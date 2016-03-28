@@ -1,0 +1,103 @@
+<resources>
+    <string name="appname">NatureSouq</string>
+
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+
+    <string name="openDrawer">Open</string>
+    <string name="closeDrawer">Close</string>
+
+    <!--NavigationDrawer Strings -->
+    <string name="Home">Home</string>
+    <string name="MyAccount">My Account</string>
+    <string name="catagory"></string>
+    <string name="Wellness">Wellness</string>
+    <string name="Entertainers">Entertainers</string>
+    <string name="NatureFriendly">Nature Friendly</string>
+    <string name="Airtreatment">Air Treatment</string>
+    <string name="Innovative">Innovative</string>
+    <string name="Specialist">Specialist</string>
+    <string name="BeautyCare">Beauty Care</string>
+    <string name="InnovativeKids">Innovative Kids</string>
+    <string name="Cleaning">Cleaning</string>
+    <string name="drawer_open">Drawer open</string>
+    <string name="drawer_close">Drawer Close</string>
+    <string name="login_string">Enter your Email and password bellow to login</string>
+    <string name="sign_str">Not registered yet? Please,</string>
+    <string name="signup_str">Already have an account?</string>
+    <string name="pay_str">Payment was successful</string>
+    <string name="facebook_app_id">130636743961899</string>
+
+    <string name="forgotPasswordDesc">Enter the Email address that you registered with and we will send you the instructions to reset your password</string>
+
+    <string name="product_description">Basically, the kit consists more  then a hundred ready-to-use element that you can combine to get the exact prototype you want</string>
+    <string name="notification_txt">1 item in your order<br/> OD5646132685565465600 has been shipped by seller BS Retail. It will be delivered by saturday, Dec. 20, 2015.</string>
+
+	
+	
+	 <string name="splash_char">/</string>
+    <string name="app_name">OpPayment</string>
+    <string name="expiry">Expiry Date</string>
+    <string name="cvc">CVC</string>
+    <string name="card_holder">Card Holder</string>
+    <string name="save_credit_card">Save Credit Card</string>
+    <string name="btn_pay">Pay</string>
+    <string name="bank_name_amer">American Express</string>
+    <string name="bank_name_visa">VISA</string>
+    <string name="bank_name_dinner">Diners Club</string>
+    <string name="bank_name_jcb">JCB</string>
+    <string name="bank_name_maestro">Maestro</string>
+    <string name="bank_name_bcmc">BCMC</string>
+    <string name="bank_name_pf">PostFinance Card</string>
+    <string name="bank_name_dd_de">Direct Debits DE</string>
+    <string name="bank_name_dd_at">Direct Debits AT</string>
+    <string name="bank_name_dd_nl">Direct Debits NL</string>
+    <string name="bank_name_master">Master Card</string>
+    <string name="order_number">Order ID:</string>
+    <string name="month">Month</string>
+    <string name="year">Year</string>
+    <string name="account_owner">Account Owner</string>
+    <string name="bank_account">Bank Account</string>
+    <string name="card_blz">BLZ</string>
+    <string name="bank_address">Address</string>
+    <string name="city">City</string>
+    <string name="zip">ZIP (Post Code)</string>
+    <string name="msg_success1_body">The payment has been authorised.</string>
+    <string name="msg_error1_body">Your order is accepted. Confirmation of your payment has not been received yet. Contact the merchant if necessary.</string>
+    <string name="msg_error2_body">Payment details validation failed. Please retry.</string>
+    <string name="msg_error3_body">The payment has been declined by the acquirer. Please select a different payment
+        method.
+    </string>
+    <string name="msg_error4_body">A technical problem occurred. Please retry later.</string>
+    <string name="msg_error_credentials_body">A technical problem occurred. Please retry later.</string>
+    <string name="dialog_cvc_header">Where to find your Card verification code ?\n</string>
+    <string name="dialog_cvc_body">This is an additional check to ensure that your card is not used by an unauthorized
+        person.\n\nFor MasterCard and Visa, look on the back of the card for a 3 digit code on the signature strip. It
+        will be either after the full customer account number or after the last 4 digits of the customer account number.
+        If you have an American Express card, look for the 4 digit code above your account number on the front of the
+        card.
+    </string>
+    <string name="dialog_save_body">The „Save credit card or bank account” functionality allows you to complete future purchases without
+        the need to re-enter your credit card details. For security reasons we do not store your credit card details on
+        your mobile device but in an encrypted way on the secured servers of our payment service provider.
+    </string>
+    <string name="dialog_save_header">„Save credit card or bank account” functionality\n</string>
+    <string name="activity_credit_debit">Credit Card</string>
+    <string name="credit_card_number">Card Number</string>
+    <string name="save_debit_card">Save Account number</string>
+    <string name="btn_save">Save</string>
+    <string name="help">Help</string>
+    <string name="img_logo">Logo</string>
+    <string name="img_card">Card</string>
+    <string name="activity_direct_debit">Direct Debit</string>
+    <string name="activity_payment_selection">Select payment</string>
+    <string name="dialog_expiry_title">Select expiry month and year</string>
+    <string name="dialog_3D_secure">3D Secure</string>
+    <string name="dialog_web_auth">Authorization</string>
+    <string name="_cvc_length_error">CVC length should be equal 3 or 4 chars</string>
+    <string name="_activity_payment_with_alias">Alias payment</string>
+    <string name="save_payment_card">Save Payment Details </string>
+    <string name="pay_str1">THANK YOU</string>
+    <string name="pay_str2">Your Order has been placed and is being processed.</string>
+	
+</resources>

@@ -1,0 +1,220 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:id="@+id/root"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:background="@drawable/ogone_background"
+                android:orientation="vertical">
+
+    <ScrollView
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="30dp">
+
+        <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+            <LinearLayout
+                    style="@style/MatchParent"
+                    android:background="@drawable/rectangle_rounded"
+                    android:orientation="vertical">
+
+                <RelativeLayout
+                        android:id="@+id/logoLayout"
+                        style="@style/item_one_rounded_top">
+
+                    <ImageView
+                            android:id="@+id/card_icon"
+                            style="@style/WrapContent"
+                            android:layout_centerHorizontal="true"
+                            android:layout_centerVertical="true"
+                            android:contentDescription="@string/img_logo"/>
+                </RelativeLayout>
+
+                <LinearLayout
+                        android:id="@+id/ownerLayout"
+                        style="@style/item_two"
+                        android:orientation="vertical">
+
+                    <com.op.android.activities.OPFontTextView
+                            android:id="@+id/card_holder_title"
+                            style="@style/MainText_indented"
+                            android:text="@string/account_owner"/>
+
+                    <EditText
+                            android:id="@+id/card_holder"
+                            style="@style/edittext_indented"
+                            android:inputType="textCapWords"
+                            android:maxLength="50"
+                            android:singleLine="true"/>
+                </LinearLayout>
+
+                <LinearLayout
+                        android:id="@+id/accountLayout"
+                        style="@style/item_one"
+                        android:orientation="vertical">
+
+                    <com.op.android.activities.OPFontTextView
+                            android:id="@+id/account_title"
+                            style="@style/MainText_indented"
+                            android:text="@string/bank_account"/>
+
+                    <EditText
+                            android:id="@+id/bank_accaunt"
+                            style="@style/edittext_indented"
+                            android:inputType="number"
+                            android:maxLength="11">
+                    </EditText>
+                </LinearLayout>
+
+                <LinearLayout
+                        android:id="@+id/layout_blz"
+                        style="@style/item_two"
+                        android:orientation="vertical">
+
+                    <com.op.android.activities.OPFontTextView
+                            android:id="@+id/blz_title"
+                            style="@style/MainText_indented"
+                            android:text="@string/card_blz"/>
+
+                    <EditText
+                            android:id="@+id/blz"
+                            style="@style/edittext_indented"
+                            android:inputType="number"
+                            android:maxLength="8"/>
+                </LinearLayout>
+
+                <LinearLayout
+                        android:id="@+id/layout_adrress"
+                        style="@style/item_one"
+                        android:orientation="vertical">
+
+                    <com.op.android.activities.OPFontTextView
+                            android:id="@+id/label_address"
+                            style="@style/MainText_indented"
+                            android:text="@string/bank_address"/>
+
+                    <EditText
+                            android:id="@+id/adress"
+                            style="@style/edittext_indented"
+                            android:inputType="textPostalAddress"/>
+                </LinearLayout>
+
+                <LinearLayout
+                        android:id="@+id/cityLayout"
+                        style="@style/item_one"
+                        android:baselineAligned="false"
+                        android:orientation="horizontal">
+
+                    <LinearLayout
+                            style="@style/FillLine"
+                            android:layout_weight="1"
+                            android:orientation="vertical">
+
+                        <com.op.android.activities.OPFontTextView
+                                android:id="@+id/label_city"
+                                style="@style/MainText_indented"
+                                android:text="@string/city"/>
+
+                        <EditText
+                                android:id="@+id/city"
+                                style="@style/edittext_indented"
+                                android:inputType="text"
+                                android:singleLine="true"/>
+                    </LinearLayout>
+
+                    <LinearLayout
+                            android:id="@+id/layout_zip"
+                            style="@style/FillLine"
+                            android:layout_weight="1"
+                            android:orientation="vertical">
+
+                        <com.op.android.activities.OPFontTextView
+                                android:id="@+id/label_zip"
+                                style="@style/MainText_indented"
+                                android:text="@string/zip"/>
+
+                        <EditText
+                                android:id="@+id/zip"
+                                style="@style/edittext_indented"
+                                android:inputType="number"
+                                android:maxLength="5"/>
+                    </LinearLayout>
+                </LinearLayout>
+
+                <!-- row: save debit card data -->
+                <RelativeLayout
+                        android:id="@+id/layout_remember"
+                        style="@style/layoutList_style_narrow_one">
+
+                    <com.op.android.activities.OPFontTextView
+                        android:id="@+id/textView2"
+                        style="@style/MainText_indented"
+                        android:layout_toLeftOf="@+id/info_remember"
+                        android:text="@string/save_debit_card" />
+
+                    <ImageButton
+                            android:id="@+id/info_remember"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:layout_toLeftOf="@+id/remember"
+                            android:background="@android:color/transparent"
+                            android:contentDescription="@string/save_debit_card"
+                            android:layout_marginLeft="5dp"
+                            android:layout_marginRight="10dp"
+                            android:src="@drawable/op_info"/>
+
+                    <CheckBox
+                            android:id="@+id/remember"
+                            style="@style/WrapContent"
+                            android:layout_alignParentRight="true"
+                            android:layout_centerVertical="true"
+                            android:layout_marginRight="10dp"/>
+                </RelativeLayout>
+
+                <RelativeLayout
+                        android:id="@+id/orderLayout"
+                        style="@style/layoutList_style_narrow_two"
+                        android:background="@drawable/rectangle_rounded_bottom_two"
+                        android:orientation="horizontal">
+
+                    <com.op.android.activities.OPFontTextView
+                            android:id="@+id/textView3"
+                            style="@style/MainText_indented"
+                            android:text="@string/order_number"/>
+
+                    <com.op.android.activities.OPFontTextView
+                            android:id="@+id/tv_payment_id"
+                            style="@style/SimpleText"
+                            android:layout_centerVertical="true"
+                            android:layout_marginLeft="15dp"
+                            android:layout_toRightOf="@+id/textView3"/>
+                </RelativeLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                    android:id="@+id/button_layout"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@android:color/transparent"
+                    android:orientation="vertical">
+
+                <Button
+                        android:id="@+id/buy_button"
+                        android:layout_width="fill_parent"
+                        android:layout_height="50dip"
+                        android:layout_margin="10dip"
+                        android:background="@drawable/button_red"
+                        android:text="@string/btn_pay"
+                        android:textColor="@android:color/white"
+                        android:textStyle="bold"/>
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
+
+</RelativeLayout>

@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#eeeeee">
+    <ScrollView
+        xmlns:layout="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:scrollbars="none"
+        android:fillViewport="true">
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#eeeeee"
+            android:padding="26dp"
+            android:gravity="bottom">
+
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="#fff"
+                android:padding="26dp">
+
+                <TextView
+                    android:id="@+id/shipment_info"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="SHIPMENT INFO"
+                    android:textSize="22sp"
+                    android:textStyle="bold"
+                    android:textColor="#585959"/>
+
+                <EditText
+                    android:id="@+id/street_address"
+                    android:layout_width="match_parent"
+                    android:layout_height="76dp"
+                    android:hint="Street address"
+                    android:textSize="22sp"
+                    android:textColorHint="#acacac"
+                    android:textColor="#000"
+                    android:paddingLeft="30dp"
+                    android:paddingRight="30dp"
+                    android:singleLine="true"
+                    android:background="#eeeeee"
+                    android:inputType="text"
+                    android:layout_marginTop="26dp"/>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="76dp"
+                    android:orientation="horizontal"
+                    android:weightSum="1"
+                    android:layout_marginTop="26dp">
+                    <EditText
+                        android:id="@+id/city"
+                        android:layout_width="match_parent"
+                        android:layout_height="76dp"
+                        android:hint="City"
+                        android:textSize="22sp"
+                        android:textColorHint="#acacac"
+                        android:textColor="#000"
+                        android:paddingLeft="30dp"
+                        android:paddingRight="30dp"
+                        android:singleLine="true"
+                        android:background="#eeeeee"
+                        android:layout_marginRight="7dp"
+                        android:inputType="text"
+                        android:layout_weight=".5"/>
+
+                    <EditText
+                        android:id="@+id/zip"
+                        android:layout_width="match_parent"
+                        android:layout_height="76dp"
+                        android:hint="Zip code"
+                        android:textSize="22sp"
+                        android:textColorHint="#acacac"
+                        android:textColor="#000"
+                        android:paddingLeft="30dp"
+                        android:paddingRight="30dp"
+                        android:singleLine="true"
+                        android:background="#eeeeee"
+                        android:inputType="textPostalAddress"
+                        android:layout_marginLeft="12dp"
+                        android:layout_weight=".5"/>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="76dp"
+                    android:orientation="horizontal"
+                    android:weightSum="1"
+                    android:layout_marginTop="26dp">
+                    <EditText
+                        android:id="@+id/state"
+                        android:layout_width="match_parent"
+                        android:layout_height="76dp"
+                        android:hint="State"
+                        android:textSize="22sp"
+                        android:textColorHint="#acacac"
+                        android:textColor="#000"
+                        android:paddingLeft="30dp"
+                        android:paddingRight="30dp"
+                        android:singleLine="true"
+                        android:background="#eeeeee"
+                        android:inputType="text"
+                        android:layout_marginRight="7dp"
+                        android:layout_weight=".5"/>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="76dp"
+                        android:orientation="horizontal"
+                        android:layout_marginLeft="12dp"
+                        android:background="#eeeeee"
+                        android:layout_weight=".5">
+                        <Spinner
+                            android:id="@+id/countary"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:spinnerMode="dropdown"
+                            android:textColor="#000"
+                            android:paddingLeft="24.8dp"
+                            android:background="#eeeeee"
+                            android:layout_gravity="left"
+                            android:layout_weight=".5"/>
+
+                        <ImageView
+                            android:layout_width="10dp"
+                            android:layout_height="match_parent"
+                            android:layout_gravity="center|right"
+                            android:layout_alignParentRight="true"
+                            android:background="#eeeeee"
+                            android:src="@drawable/spinner_arrow"
+                            android:layout_marginRight="10dp"
+                            android:clickable="true"/>
+                    </LinearLayout>
+                </LinearLayout>
+                <EditText
+                    android:id="@+id/phone"
+                    android:layout_width="match_parent"
+                    android:layout_height="76dp"
+                    android:hint="Phone number"
+                    android:textSize="22sp"
+                    android:textColorHint="#acacac"
+                    android:textColor="#000"
+                    android:paddingLeft="30dp"
+                    android:paddingRight="30dp"
+                    android:singleLine="true"
+                    android:background="#eeeeee"
+                    android:inputType="phone"
+                    android:layout_marginTop="26dp"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_marginTop="410dp">
+                <Button
+                    android:id="@+id/newaddress_btn"
+                    android:layout_width="match_parent"
+                    android:layout_height="76dp"
+                    android:text="ADD NEW ADDRESS"
+                    android:textColor="#fff"
+                    android:textSize="22sp"
+                    android:textStyle="bold"
+                    android:clickable="true"
+                    android:background="@drawable/button_effect_green"
+                    android:onClick="newAddress"
+                    android:layout_gravity="bottom"/>
+            </LinearLayout>
+
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>

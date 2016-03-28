@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<resources>
+    <string name="account_owner">Titulaire du compte</string>
+    <string name="card_holder">Titulaire de la carte</string>
+    <string name="expiry">Date d\'expiration</string>
+    <string name="city">Ville</string>
+    <string name="btn_pay">Payer</string>
+    <string name="save_credit_card">Conserver vos données de carte de crédit</string>
+    <string name="dialog_cvc_body">Ce contrôle supplémentaire permet de vérifier que votre carte n\'est pas utilisée de
+        manière frauduleuse.\n\nPour les cartes MasterCard et Visa, vous trouverez le code à 3 chiffres au verso de
+        votre carte sur la zone de signature. Ce code se trouve soit après votre numéro de compte complet, soit après
+        les 4 derniers chiffres de votre numéro de compte. Si vous avez une carte American Express, vous trouverez le
+        code à 4 chiffres au recto de votre carte, au dessus de votre numéro de compte.
+    </string>
+    <string name="year">année</string>
+    <string name="dialog_cvc_header">Où trouver votre code de vérification?\n</string>
+    <string name="card_blz">BLZ</string>
+    <string name="bank_account">Compte bancaire</string>
+    <string name="bank_address">Adresse</string>
+    <string name="order_number">N° de commande</string>
+    <string name="zip">Code postal</string>
+    <string name="dialog_save_body">La fonctionnalité « Conserver vos données de carte de crédit ou compte bancaire » vous permet
+        d’effectuer des achats futurs sans devoir ré-encoder vos données de carte de crédit. Pour des raisons de
+        sécurité, nous ne conservons pas ces données sur votre téléphone portable, mais bien de manière encryptée sur
+        les serveurs sécurisés de notre fournisseur de services de paiement.
+    </string>
+    <string name="cvc">CVC</string>
+    <string name="dialog_save_header">La fonctionnalité « Conserver vos données de carte de crédit ou compte bancaire »\n</string>
+    <string name="month">mois</string>
+    <string name="credit_card_number">Numéro de la carte</string>
+    <string name="save_debit_card">Conserver compte bancaire </string>
+    <string name="btn_save">Conserver</string>
+    <string name="help">Aide</string>
+    <string name="msg_success1_body">Le paiement est autorisé.</string>
+    <string name="msg_error1_body">Votre commande est acceptée. Nous n\'avons pas reçu la réponse de la banque confirmant votre paiement. Ne faites pas un nouvel essai de paiement. Contactez votre marchand.</string>
+    <string name="msg_error2_body">Erreur de données de paiement. Veuillez ré-essayer.</string>
+    <string name="msg_error3_body">Le paiement est refusé par l\'acquéreur. Veuillez sélectionner une autre méthode de
+        paiement.
+    </string>
+    <string name="msg_error4_body">Un problème technique est survenu. Veuillez ré-essayer plus tard.</string>
+	<string name="msg_error_credentials_body">Un problème technique est survenu. Veuillez ré-essayer plus tard.</string>
+    <string name="activity_credit_debit">Carte de Crédit</string>
+    <string name="activity_direct_debit">Domiciliation</string>
+    <string name="activity_payment_selection">Sélection de paiement</string>
+    <string name="dialog_3D_secure">3D Secure</string>
+    <string name="dialog_web_auth">Autorisation</string>
+    <string name="_cvc_length_error">FR-CVC length should be equal 3 or 4 chars-FR</string>
+    <string name="_activity_payment_with_alias">FR-Alias payment-FR</string>
+    <string name="save_payment_card">Conserver données de paiement </string>
+</resources>

@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#eeeeee">
+<ScrollView
+    xmlns:layout="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:scrollbars="none"
+    android:fillViewport="true">
+<LinearLayout
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="#eeeeee"
+    android:padding="13dp"
+    android:gravity="bottom">
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#fff"
+        android:padding="13dp">
+
+    <TextView
+        android:id="@+id/shipment_info"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="SHIPMENT INFO"
+        android:textSize="11sp"
+        android:textStyle="bold"
+        android:textColor="#585959"/>
+
+    <EditText
+        android:id="@+id/street_address"
+        android:layout_width="match_parent"
+        android:layout_height="38dp"
+        android:hint="Street address"
+        android:textSize="11sp"
+        android:textColorHint="#acacac"
+        android:textColor="#000"
+        android:paddingLeft="15dp"
+        android:paddingRight="15dp"
+        android:singleLine="true"
+        android:background="#eeeeee"
+        android:inputType="text"
+        android:layout_marginTop="13dp"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="38dp"
+            android:orientation="horizontal"
+            android:weightSum="1"
+            android:layout_marginTop="13dp">
+    <EditText
+        android:id="@+id/city"
+        android:layout_width="match_parent"
+        android:layout_height="38dp"
+        android:hint="City"
+        android:textSize="11sp"
+        android:textColorHint="#acacac"
+        android:textColor="#000"
+        android:paddingLeft="15dp"
+        android:paddingRight="15dp"
+        android:singleLine="true"
+        android:background="#eeeeee"
+        android:layout_marginRight="7dp"
+        android:inputType="text"
+        android:layout_weight=".5"/>
+
+    <EditText
+        android:id="@+id/zip"
+        android:layout_width="match_parent"
+        android:layout_height="38dp"
+        android:hint="Zip code"
+        android:textSize="11sp"
+        android:textColorHint="#acacac"
+        android:textColor="#000"
+        android:paddingLeft="15dp"
+        android:paddingRight="15dp"
+        android:singleLine="true"
+        android:background="#eeeeee"
+        android:inputType="textPostalAddress"
+        android:layout_marginLeft="6dp"
+        android:layout_weight=".5"/>
+        </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="38dp"
+        android:orientation="horizontal"
+        android:weightSum="1"
+        android:layout_marginTop="13dp">
+    <EditText
+        android:id="@+id/state"
+        android:layout_width="match_parent"
+        android:layout_height="38dp"
+        android:hint="State"
+        android:text="Dubai"
+        android:textSize="11sp"
+        android:textColorHint="#acacac"
+        android:textColor="#000"
+        android:paddingLeft="15dp"
+        android:paddingRight="15dp"
+        android:singleLine="true"
+        android:background="#eeeeee"
+        android:inputType="text"
+        android:layout_marginRight="7dp"
+        android:layout_weight=".5"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="38dp"
+        android:orientation="horizontal"
+        android:layout_marginLeft="6dp"
+        android:background="#eeeeee"
+        android:layout_weight=".5">
+    <Spinner
+        android:id="@+id/countary"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:spinnerMode="dropdown"
+        android:textColor="#000"
+        android:paddingLeft="10dp"
+        android:background="#eeeeee"
+        android:layout_gravity="left"
+        android:layout_weight=".5"/>
+
+        <ImageView
+            android:layout_width="10dp"
+            android:layout_height="match_parent"
+            android:layout_gravity="center|right"
+            android:layout_alignParentRight="true"
+            android:background="#eeeeee"
+            android:src="@drawable/spinner_arrow"
+            android:layout_marginRight="10dp"
+            android:clickable="true"/>
+    </LinearLayout>
+    </LinearLayout>
+        <EditText
+            android:id="@+id/phone"
+            android:layout_width="match_parent"
+            android:layout_height="38dp"
+            android:hint="Phone number"
+            android:textSize="11sp"
+            android:textColorHint="#acacac"
+            android:textColor="#000"
+            android:paddingLeft="15dp"
+            android:paddingRight="15dp"
+            android:singleLine="true"
+            android:background="#eeeeee"
+            android:inputType="phone"
+            android:layout_marginTop="13dp"/>
+</LinearLayout>
+
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_alignParentBottom="true"
+    android:layout_marginTop="205dp">
+    <Button
+        android:id="@+id/newaddress_btn"
+        android:layout_width="match_parent"
+        android:layout_height="38dp"
+        android:text="ADD NEW ADDRESS"
+        android:textColor="#fff"
+        android:textSize="11sp"
+        android:textStyle="bold"
+        android:clickable="true"
+        android:background="@drawable/button_effect_green"
+        android:onClick="newAddress"
+        android:layout_gravity="bottom"/>
+</LinearLayout>
+
+</LinearLayout>
+    </ScrollView>
+    <include layout="@layout/progressbar"/>
+    </RelativeLayout>

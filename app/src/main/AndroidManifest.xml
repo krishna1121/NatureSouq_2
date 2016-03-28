@@ -1,0 +1,259 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.naturesouq">
+
+    <uses-permission android:name="android.permission.INTERNET"/>
+    <!-- for most things, including card.io & paypal -->
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.CALL_PHONE" />
+
+    <uses-permission android:name="com.android.browser.permission.READ_HISTORY_BOOKMARKS" />
+    <uses-permission android:name="com.android.browser.permission.WRITE_HISTORY_BOOKMARKS" />
+
+    <uses-sdk android:maxSdkVersion="23"
+        android:minSdkVersion="16"></uses-sdk>
+
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/appname"
+        >
+        <activity
+            android:name=".common.MainActivity"
+            android:label="@string/appname"
+            android:launchMode="singleTop"
+            android:screenOrientation="portrait"
+            android:theme="@style/ActivityWithBackButtonTheme">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <activity
+            android:name=".common.ProductDetail"
+            android:label="@string/appname"
+            android:launchMode="singleTop"
+            android:screenOrientation="portrait"
+            android:theme="@style/ActivityWithBackButtonNormalTheme">
+        </activity>
+
+        <activity
+            android:name=".common.SpecificationTab"
+            android:label="@string/appname"
+            android:launchMode="singleTop"
+            android:screenOrientation="portrait"
+            android:theme="@style/ActivityWithBackButtonNormalTheme">
+        </activity>
+
+        <activity
+            android:name=".common.DescriptionTab"
+            android:label="@string/appname"
+            android:launchMode="singleTop"
+            android:screenOrientation="portrait"
+            android:theme="@style/ActivityWithBackButtonNormalTheme">
+        </activity>
+
+        <activity
+            android:name=".common.Cart"
+            android:label="@string/appname"
+            android:launchMode="singleTop"
+            android:screenOrientation="portrait"
+            android:theme="@style/ActivityWithBackButtonNormalTheme">
+        </activity>
+        <activity
+            android:name=".common.Login"
+            android:label="@string/appname"
+            android:launchMode="singleTop"
+            android:screenOrientation="portrait"
+            android:theme="@style/ActivityWithBackButtonNormalTheme"
+            android:windowSoftInputMode="stateHidden|adjustResize|stateAlwaysHidden">
+        </activity>
+
+        <activity
+            android:name=".common.Registration"
+            android:label="@string/appname"
+            android:launchMode="singleTop"
+            android:screenOrientation="portrait"
+            android:theme="@style/ActivityWithBackButtonNormalTheme"
+            android:windowSoftInputMode="stateHidden|adjustResize|stateAlwaysHidden">
+        </activity>
+
+        <activity
+            android:name=".common.ForgotPassword"
+            android:label="@string/appname"
+            android:launchMode="singleTop"
+            android:screenOrientation="portrait"
+            android:theme="@style/ActivityWithBackButtonNormalTheme"
+            android:windowSoftInputMode="stateHidden|adjustResize|stateAlwaysHidden">
+        </activity>
+
+        <activity
+            android:name=".common.ChangePassword"
+            android:label="@string/appname"
+            android:launchMode="singleTop"
+            android:screenOrientation="portrait"
+            android:theme="@style/ActivityWithBackButtonNormalTheme"
+            android:windowSoftInputMode="stateHidden|adjustResize|stateAlwaysHidden">
+        </activity>
+
+        <activity
+            android:name=".common.ChangeAddress"
+            android:label="@string/appname"
+            android:launchMode="singleTop"
+            android:screenOrientation="portrait"
+            android:theme="@style/ActivityWithBackButtonNormalTheme"
+            android:windowSoftInputMode="stateHidden|adjustResize|stateAlwaysHidden">
+        </activity>
+
+        <activity
+            android:name=".common.MyOrders"
+            android:label="@string/appname"
+            android:launchMode="singleTop"
+            android:screenOrientation="portrait"
+            android:theme="@style/ActivityWithBackButtonNormalTheme">
+        </activity>
+
+        <activity
+            android:name=".common.MyOrdersProduct"
+            android:label="@string/appname"
+            android:launchMode="singleTop"
+            android:screenOrientation="portrait"
+            android:theme="@style/ActivityWithBackButtonNormalTheme">
+        </activity>
+
+        <activity
+            android:name=".common.MyFavorite"
+            android:label="@string/appname"
+            android:launchMode="singleTop"
+            android:screenOrientation="portrait"
+            android:theme="@style/ActivityWithBackButtonNormalTheme">
+        </activity>
+
+        <activity
+            android:name=".common.FilterItemActivity"
+            android:label="@string/appname"
+            android:launchMode="singleTop"
+            android:screenOrientation="portrait"
+            android:theme="@style/ActivityWithBackButtonNormalTheme">
+        </activity>
+
+        <activity
+            android:name=".common.CheckOut"
+            android:label="@string/appname"
+            android:launchMode="singleTop"
+            android:screenOrientation="portrait"
+            android:theme="@style/ActivityWithBackButtonNormalTheme">
+        </activity>
+        <activity
+            android:name=".common.AddNewAddress"
+            android:label="@string/appname"
+            android:launchMode="singleTop"
+            android:screenOrientation="portrait"
+            android:theme="@style/ActivityWithBackButtonNormalTheme"
+            android:windowSoftInputMode="stateHidden|adjustResize|stateAlwaysHidden">
+        </activity>
+        <activity
+            android:name=".common.OrderStatus"
+            android:label="@string/appname"
+            android:launchMode="singleTop"
+            android:screenOrientation="portrait"
+            android:theme="@style/ActivityWithBackButtonNormalTheme">
+        </activity>
+
+
+        <activity
+            android:name=".common.CategoryProducts"
+            android:label="@string/appname"
+            android:launchMode="singleTop"
+            android:screenOrientation="portrait"
+            android:theme="@style/ActivityWithBackButtonNormalTheme">
+        </activity>
+
+        <activity
+            android:name=".common.Search"
+            android:label="@string/appname"
+            android:launchMode="singleTop"
+            android:screenOrientation="portrait"
+            android:theme="@style/ActivityWithBackButtonNormalTheme"
+            android:windowSoftInputMode="stateVisible">
+            <intent-filter>
+                <action android:name="android.intent.action.SEARCH" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+            <meta-data
+                android:name ="android.app.searchable"
+                android:resource ="@layout/search"/>
+        </activity>
+
+
+        <activity android:name="com.facebook.FacebookActivity"
+                  android:configChanges="keyboard|keyboardHidden|screenLayout|screenSize|orientation"
+                  android:theme="@android:style/Theme.Translucent.NoTitleBar"
+                  android:label="NatureSouq" />
+
+        <meta-data
+            android:name="com.facebook.sdk.ApplicationId"
+            android:value="@string/facebook_app_id"
+            />
+
+        <!-- Paypal Classes -->
+        <service
+            android:name="com.paypal.android.sdk.payments.PayPalService"
+            android:exported="false" />
+
+        <activity android:name="com.paypal.android.sdk.payments.PaymentActivity" />
+        <activity android:name="com.paypal.android.sdk.payments.LoginActivity" />
+        <activity android:name="com.paypal.android.sdk.payments.PaymentMethodActivity" />
+        <activity android:name="com.paypal.android.sdk.payments.PaymentConfirmActivity" />
+        <activity
+            android:name="io.card.payment.CardIOActivity"
+            android:configChanges="keyboardHidden|orientation" />
+        <activity android:name="io.card.payment.DataEntryActivity" />
+
+
+
+        <!--PayFort Library Classes -->
+        <activity
+        android:name="com.op.android.activities.OPNewOrderActivity"
+         android:label="@string/activity_payment_selection"
+         android:screenOrientation="portrait">
+         </activity>
+
+        <activity
+         android:name="com.op.android.activities.OPCreditCardActivity"
+        android:label="@string/activity_credit_debit"
+        android:screenOrientation="portrait">
+        </activity>
+
+        <activity
+        android:name="com.op.android.activities.OPDirectDebitActivity"
+        android:label="@string/activity_direct_debit"
+        android:screenOrientation="portrait">
+        </activity>
+
+        <activity
+        android:name="com.op.android.activities.OPHiddenActivity"
+        android:screenOrientation="portrait">
+        </activity>
+
+        <activity
+        android:name="com.op.android.controls.OPDialogDateExpire"
+        android:screenOrientation="portrait"
+        android:theme="@android:style/Theme.Dialog">
+        </activity>
+
+        <activity
+        android:name="com.op.android.activities.OPWebflowActivity"
+        android:label="@string/dialog_3D_secure"
+        android:screenOrientation="portrait">
+        </activity>
+
+        <provider android:name=".common.MySuggestionProvider"
+            android:authorities="com.naturesouq.common.MySuggestionProvider" />
+
+    </application>
+
+</manifest>

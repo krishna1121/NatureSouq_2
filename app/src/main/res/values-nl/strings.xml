@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<resources>
+    <string name="account_owner">Rekeninghouder</string>
+    <string name="card_holder">Naam kaarthouder</string>
+    <string name="expiry">Vervaldatum</string>
+    <string name="city">Stad</string>
+    <string name="btn_pay">Betalen</string>
+    <string name="save_credit_card">Bewaar creditcard</string>
+    <string name="dialog_cvc_body">Deze controle gaat na of uw kaart niet gebruikt wordt door een ongeautoriseerd
+        persoon.\n\nVoor MasterCard en Visa, kijk op de keerzijde van uw kaart waar u een code met 3 cijfers vindt in
+        het veld van uw handtekening. U kunt deze code ofwel na het volledige rekeningnummer van de klant, ofwel na de
+        laatste 4 cijfers van het rekeningnummer van de klant vinden. Als u een American Express kaart heeft, kijk dan
+        naar de code met de 4 cijfers boven uw rekeningnummer op de voorzijde van uw kaart.
+    </string>
+    <string name="year">jaar</string>
+    <string name="dialog_cvc_header">Waar vindt u uw kaart verificatie code?\n</string>
+    <string name="card_blz">BLZ</string>
+    <string name="bank_account">Bankrekening</string>
+    <string name="bank_address">Adres</string>
+    <string name="order_number">Bestelnummer</string>
+    <string name="zip">Postcode</string>
+    <string name="dialog_save_body">Met de “Bewaar creditcard of bankrekening” functionaliteit kunt u toekomstige aankopen doen zonder
+        opnieuw uw creditcardgegevens in te geven. Om veiligheidsredenen bewaren wij uw creditcardgegevens niet op uw
+        mobiel toestel, maar geëncrypteerd op de beveiligde servers van onze payment service provider.
+    </string>
+    <string name="cvc">CVC</string>
+    <string name="dialog_save_header">Met de “Bewaar creditcard of bankrekening” functionaliteit\n</string>
+    <string name="month">maand</string>
+    <string name="credit_card_number">Kaartnummer</string>
+    <string name="save_debit_card">Bewaar Rekening </string>
+    <string name="btn_save">Bewaar</string>
+    <string name="help">Help</string>
+    <string name="msg_success1_body">De betaling is geautoriseerd.</string>
+    <string name="msg_error1_body">Uw bestelling is aanvaard Opgelet! De bank heeft uw betaling niet bevestigd. Gelieve deze niet opnieuw te verzenden maar contact op te nemen met uw handelaar.</string>
+    <string name="msg_error2_body">Validatie betaalgegevens mislukt, probeer opnieuw.</string>
+    <string name="msg_error3_body">De betaling is geweigerd door acquirer, kies een andere betaalmethode.</string>
+    <string name="msg_error4_body">Er is een technisch probleem opgetreden. Wacht even en probeer opnieuw.</string>
+	<string name="msg_error_credentials_body">Er is een technisch probleem opgetreden. Wacht even en probeer opnieuw.</string>
+    <string name="activity_credit_debit">Creditcard</string>
+    <string name="activity_direct_debit">Domiciliëring</string>
+    <string name="activity_payment_selection">Betaalmethoden selecteren</string>
+    <string name="dialog_3D_secure">3D Secure</string>
+    <string name="dialog_web_auth">Machtiging</string>
+    <string name="_cvc_length_error">NL-CVC length should be equal 3 or 4 chars-NL</string>
+    <string name="_activity_payment_with_alias">NL-Alias payment-NL</string>
+    <string name="save_payment_card">Bewaar betaalgegevens </string>
+</resources>

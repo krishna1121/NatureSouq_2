@@ -1,0 +1,241 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#eeeeee">
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="#eeeeee"
+            android:padding="13dp">
+
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="#fff"
+                android:padding="13dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="38dp"
+                    android:orientation="horizontal"
+                    android:weightSum="1">
+                    <EditText
+                        android:id="@+id/firstname"
+                        android:layout_width="match_parent"
+                        android:layout_height="38dp"
+                        android:hint="First Name"
+                        android:textSize="11sp"
+                        android:textColorHint="#acacac"
+                        android:textColor="#000"
+                        android:paddingLeft="15dp"
+                        android:paddingRight="15dp"
+                        android:singleLine="true"
+                        android:background="#eeeeee"
+                        android:layout_marginRight="7dp"
+                        android:inputType="text"
+                        android:layout_weight=".5"/>
+
+                    <EditText
+                        android:id="@+id/lastname"
+                        android:layout_width="match_parent"
+                        android:layout_height="38dp"
+                        android:hint="Last Name"
+                        android:textSize="11sp"
+                        android:textColorHint="#acacac"
+                        android:textColor="#000"
+                        android:paddingLeft="15dp"
+                        android:paddingRight="15dp"
+                        android:singleLine="true"
+                        android:background="#eeeeee"
+                        android:inputType="text"
+                        android:layout_marginLeft="6dp"
+                        android:layout_weight=".5"/>
+                </LinearLayout>
+
+                <EditText
+                    android:id="@+id/contact"
+                    android:layout_width="match_parent"
+                    android:layout_height="38dp"
+                    android:hint="Mobile Number"
+                    android:textSize="11sp"
+                    android:textColorHint="#acacac"
+                    android:textColor="#000"
+                    android:singleLine="true"
+                    android:paddingLeft="15dp"
+                    android:paddingRight="15dp"
+                    android:background="#eeeeee"
+                    android:inputType="phone"
+                    android:layout_marginTop="13dp"/>
+
+
+                <Button
+                    android:id="@+id/updateInfo"
+                    android:layout_width="match_parent"
+                    android:layout_height="38dp"
+                    android:text="UPDATE"
+                    android:textColor="#fff"
+                    android:textSize="11sp"
+                    android:textStyle="bold"
+                    android:layout_marginTop="13dp"
+                    android:clickable="true"
+                    android:background="@drawable/button_effect_green"
+                    android:layout_gravity="bottom"/>
+
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp">
+                <Button
+                    android:id="@+id/changePassword"
+                    android:layout_width="match_parent"
+                    android:layout_height="38dp"
+                    android:text="CHANGE YOUR PASSWORD"
+                    android:textColor="#fff"
+                    android:textSize="11sp"
+                    android:textStyle="bold"
+                    android:clickable="true"
+                    android:background="@drawable/button_effect_gray"
+                    android:layout_gravity="bottom"/>
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:background="#fff"
+                android:layout_marginTop="15dp">
+                <TextView
+                    android:id="@+id/add_lbl"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Address"
+                    android:textSize="11sp"
+                    android:textColor="#585959"
+                    android:textStyle="bold"
+                    android:padding="12dp"/>
+
+                <TextView
+                    android:id="@+id/shipping_address"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text=""
+                    android:textColor="#b2b2b2"
+                    android:textSize="11sp"
+                    android:layout_marginLeft="12dp"
+                    android:layout_marginRight="12dp"
+                    android:layout_marginBottom="12dp"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_marginTop="13dp">
+                <Button
+                    android:id="@+id/changeAddress"
+                    android:layout_width="match_parent"
+                    android:layout_height="38dp"
+                    android:text="CHANGE ADDRESS"
+                    android:textColor="#fff"
+                    android:textSize="11sp"
+                    android:textStyle="bold"
+                    android:clickable="true"
+                    android:background="@drawable/button_effect_gray"
+                    android:layout_gravity="bottom"/>
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:background="#fff"
+                android:layout_marginTop="15dp">
+                <TextView
+                    android:id="@+id/myorderTitle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="MY Orders"
+                    android:textSize="11sp"
+                    android:textColor="#585959"
+                    android:textStyle="bold"
+                    android:padding="12dp"/>
+
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/my_order_recycler"
+                    android:layout_width="match_parent"
+                    android:layout_height="105dp"
+                    android:dividerHeight="1dp"
+                    android:scrollbars="none"
+                    android:layout_below="@+id/myorderTitle"
+                    android:layout_marginBottom="12dp">
+
+                </android.support.v7.widget.RecyclerView>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_marginTop="13dp">
+                <Button android:id="@+id/view_order"
+                    android:layout_width="match_parent"
+                    android:layout_height="38dp"
+                    android:text="VIEW ALL"
+                    android:textColor="#fff"
+                    android:textSize="11sp"
+                    android:textStyle="bold"
+                    android:clickable="true"
+                    android:background="@drawable/button_effect_green"
+                    android:layout_gravity="bottom"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:visibility="gone"
+                android:layout_marginTop="15dp">
+                <Button android:id="@+id/review_order"
+                    android:layout_width="match_parent"
+                    android:layout_height="38dp"
+                    android:text="MY REVIEWS"
+                    android:textColor="#fff"
+                    android:textSize="11sp"
+                    android:textStyle="bold"
+                    android:clickable="true"
+                    android:background="@drawable/button_effect_gray"
+                    android:layout_gravity="bottom"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_marginTop="15dp">
+                <Button android:id="@+id/my_fevorite"
+                    android:layout_width="match_parent"
+                    android:layout_height="38dp"
+                    android:text="MY FAVORITE"
+                    android:textColor="#fff"
+                    android:textSize="11sp"
+                    android:textStyle="bold"
+                    android:clickable="true"
+                    android:background="@drawable/button_effect_gray"
+                    android:layout_gravity="bottom"/>
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
+    <include layout="@layout/progressbar"/>
+</RelativeLayout>

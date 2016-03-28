@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/rounded_rectangle"
+    android:orientation="vertical">
+    <TextView
+        android:id="@+id/popularity_lbl"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="POPULARITY"
+        android:textSize="14sp"
+        android:textColor="#515252"
+        android:textStyle="bold"
+        android:padding="10dp"
+        android:gravity="center"
+        android:layout_gravity="center"
+        android:clickable="true"
+        android:background="@drawable/textview_effect"/>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#dddddd" />
+    <TextView
+        android:id="@+id/newproduct_lbl"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="NEW PRODUCT"
+        android:textSize="14sp"
+        android:textColor="#515252"
+        android:textStyle="bold"
+        android:padding="10dp"
+        android:gravity="center"
+        android:layout_gravity="center"
+        android:clickable="true"
+        android:background="@drawable/textview_effect"/>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#dddddd" />
+    <TextView
+        android:id="@+id/price_range_HighToLow_lbl"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="PRICE RANGE HIGH TO LOW"
+        android:textSize="14sp"
+        android:textColor="#515252"
+        android:textStyle="bold"
+        android:padding="10dp"
+        android:gravity="center"
+        android:layout_gravity="center"
+        android:clickable="true"
+        android:background="@drawable/textview_effect"/>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#dddddd" />
+    <TextView
+        android:id="@+id/price_range_LowToHigh_lbl"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="PRICE RANGE LOW TO HIGH"
+        android:textSize="14sp"
+        android:textColor="#515252"
+        android:textStyle="bold"
+        android:padding="10dp"
+        android:gravity="center"
+        android:layout_gravity="center"
+        android:clickable="true"
+        android:background="@drawable/textview_effect"/>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#dddddd" />
+    <TextView
+        android:id="@+id/cancel_lbl"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="CANCEL"
+        android:textColor="#e50046"
+        android:textSize="14sp"
+        android:textStyle="bold"
+        android:padding="15dp"
+        android:gravity="center"
+        android:layout_gravity="center"
+        android:clickable="true"
+        android:background="@drawable/textview_effect"/>
+</LinearLayout>
+</LinearLayout>

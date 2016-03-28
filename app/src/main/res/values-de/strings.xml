@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<resources>
+    <string name="account_owner">Kontoinhaber</string>
+    <string name="order_number">Bestellnummer:</string>
+    <string name="zip">PLZ</string>
+    <string name="btn_pay">Bezahlen</string>
+    <string name="save_credit_card">Kreditkarte Speichern</string>
+    <string name="cvc">CVC</string>
+    <string name="bank_address">Adresse</string>
+    <string name="bank_account">Bankkonto</string>
+    <string name="card_blz">BLZ</string>
+    <string name="card_holder">Karteninhaber</string>
+    <string name="city">Stadt</string>
+    <string name="dialog_cvc_body">Die Eingabe der Kartenprüfnummer stellt einen zusätzlichen Schutz dar. Sie stellt
+        sicher, dass Ihre Kreditkarte nicht von einer unberechtigten Person genutzt wird.\n\nBei MasterCard und Visa
+        besteht die Kartenprüfnummer aus 3 Ziffern, die sich über dem Unterschriftstreifen auf der Rückseite der Karte
+        befinden. Sie stehen entweder nach der vollständigen Kreditkartennummer oder nach den letzten vier Ziffern Ihrer
+        Kundennummer. Bei American Express besteht die Kartenprüfnummer aus 4 Ziffern, die sich über der Kundennummer
+        auf der Vorderseite der Karte befinden.
+    </string>
+    <string name="expiry">Gültig bis</string>
+    <string name="year">Jahr</string>
+    <string name="dialog_cvc_header">Wo finden Sie die Kartenprüfnummer?\n</string>
+    <string name="dialog_save_body">Die Funktion “Kreditkarte oder Bankkonto speichern” erlaubt es Ihnen, bei weiterer Nutzung der App
+        keine Kreditkartendaten mehr eingeben zu müssen. Aus Sicherheitsgründen speichern wir Ihre Kreditkartendaten
+        nicht auf dem Mobiltelefon sondern in verschlüsselter Weise auf den gesicherten Servern unseres
+        Zahlungsabwicklers.
+    </string>
+    <string name="dialog_save_header">Die Funktion “Kreditkarte oder Bankkonto speichern”\n</string>
+    <string name="month">Monat</string>
+    <string name="credit_card_number">Kartennummer</string>
+    <string name="save_debit_card">Bankkonto Speichern </string>
+    <string name="btn_save">Speichern</string>
+    <string name="help">Hilfe</string>
+    <string name="msg_success1_body">Die Zahlung ist erfolgreich.</string>
+    <string name="msg_error1_body">Ihre Bestellung wurde akzeptiert. Eine Bestätigung Ihrer Zahlung ist noch nicht erfolgt. Falls nötig, kontaktieren Sie bitte den Händler.</string>
+    <string name="msg_error2_body">Überprüfung der Zahlungsdaten fehlgeschlagen. Bitte korrigieren Sie die Eingabe der
+        Zahlungsdaten.
+    </string>
+    <string name="msg_error3_body">Die Zahlung wurde durch den Akzeptanzpartner verweigert. Bitte wählen Sie eine andere
+        Zahlungsmethode.
+    </string>
+    <string name="msg_error4_body">Ein technisches Problem ist aufgetreten. Bitte versuchen Sie es später erneut.
+    </string>
+    <string name="msg_error_credentials_body">Ein technisches Problem ist aufgetreten. Bitte versuchen Sie es später erneut.</string>
+    <string name="activity_credit_debit">Kreditkarte</string>
+    <string name="activity_direct_debit">Lastschrift</string>
+    <string name="activity_payment_selection">Auswahl Zahlungsmittel</string>
+    <string name="dialog_3D_secure">3D Secure</string>
+    <string name="dialog_web_auth">Autorisierung</string>
+    <string name="_cvc_length_error">DE-CVC length should be equal 3 or 4 chars-DE</string>
+    <string name="_activity_payment_with_alias">DE-Alias payment-DE</string>
+    <string name="save_payment_card">Zahlungsdaten Speichern </string>
+</resources>

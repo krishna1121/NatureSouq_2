@@ -1,0 +1,72 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="310.5dp"
+    android:layout_height="416.3dp"
+    android:gravity="center_vertical"
+    android:layout_centerHorizontal="true"
+    android:clickable="true"
+    android:background="#fff">
+        <RelativeLayout
+            android:id="@+id/product_item"
+            android:layout_width="265.5dp"
+            android:layout_height="416.3dp"
+            android:layout_marginLeft="22.5dp"
+            android:layout_marginRight="22.5dp"
+            android:layout_marginBottom="11.3dp"
+            android:layout_marginTop="11.3dp"
+            android:layout_centerInParent="true"
+            android:background="@drawable/textview_effect"
+            android:clickable="true">
+
+            <ImageView
+                android:id="@+id/product_img"
+                android:layout_width="265.5dp"
+                android:layout_height="265.5dp"
+                android:layout_centerInParent="true"
+                android:layout_alignParentTop="true"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_below="@+id/product_img"
+                android:layout_marginTop="15.8dp"
+                android:layout_marginLeft="3dp"
+                android:layout_centerInParent="true">
+                <TextView
+                    android:id="@+id/product_name"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text=""
+                    android:textSize="24.8sp"
+                    android:textColor="#515253"
+                    android:singleLine="true"
+                    />
+
+                <TextView
+                    android:id="@+id/product_dec"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text=""
+                    android:textSize="20.3sp"
+                    android:textColor="#b2b2b2"
+                    android:singleLine="true"
+                    android:layout_marginTop="6.8dp"/>
+
+                <TextView
+                    android:id="@+id/product_price"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text=""
+                    android:textSize="20.3sp"
+                    android:textColor="#1da664"
+                    android:singleLine="true"
+                    android:layout_marginTop="6.8dp"/>
+            </LinearLayout>
+
+        </RelativeLayout>
+    <View
+        android:layout_width="2dp"
+        android:layout_height="match_parent"
+        android:background="#e8e8e8" />
+    </RelativeLayout>
+

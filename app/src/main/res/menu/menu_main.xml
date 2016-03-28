@@ -1,0 +1,24 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    >
+
+    <item
+        android:id="@+id/searchItem"
+        android:showAsAction="always"
+        android:title="Search"
+        android:icon="@drawable/search"
+        />
+
+ <!--   <item
+        android:id="@+id/addtocart"
+        android:showAsAction="always"
+        android:title="Add Items in Cart"
+        android:icon="@drawable/cart"
+        />-->
+
+    <item android:id="@+id/cart"
+          android:actionLayout="@layout/action_bar_notifitcation_icon"
+          android:showAsAction="always"
+          android:icon="@drawable/cart"
+          android:title="Cart" />
+
+</menu>

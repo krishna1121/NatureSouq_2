@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:id="@+id/root"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:background="@drawable/ogone_background"
+                android:orientation="vertical"
+                android:weightSum="1">
+
+    <LinearLayout style="@style/MatchParent" android:layout_centerInParent="true" android:orientation="vertical"
+                  android:gravity="center">
+
+        <LinearLayout
+                android:id="@+id/methods_list"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="30dip"
+                android:layout_marginLeft="30dp"
+                android:layout_marginRight="30dp"
+                android:layout_marginBottom="70dp"
+                android:background="@drawable/rectangle_rounded"
+                android:orientation="vertical">
+
+            <ListView
+                    android:id="@+id/list_view"
+                    style="@style/MatchParent"
+                    android:layout_margin="2dp"
+                    android:cacheColorHint="@android:color/transparent"
+                    android:layout_marginBottom="3dp"/>
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <RelativeLayout
+            android:layout_width="fill_parent"
+            android:layout_height="60dip"
+            android:layout_alignParentBottom="true"
+            android:id="@+id/label_container"
+            >
+        <ImageView
+                android:id="@+id/logo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:scaleType="centerInside"
+                android:src="@drawable/ogone_logo"
+                android:adjustViewBounds="true"
+                android:contentDescription="@string/img_logo"/>
+
+    </RelativeLayout>
+</RelativeLayout>

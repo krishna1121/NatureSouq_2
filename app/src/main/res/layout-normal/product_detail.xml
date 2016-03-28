@@ -1,0 +1,273 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#fff">
+
+<ScrollView
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:scrollbars="none">
+<LinearLayout
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="#fff"
+    android:focusableInTouchMode="true"
+    >
+
+
+    <TextView
+        android:id="@+id/productName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="15dp"
+        android:layout_marginTop="15dp"
+        android:text="Product Name"
+        android:textColor="#333333"
+        android:textSize="27sp"
+        android:maxLines="2"
+        android:textStyle="bold"/>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="20dp"
+        android:orientation="horizontal"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp">
+
+        <RatingBar
+            android:id="@+id/ratingBar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:numStars="5"
+            android:stepSize="0.5"
+            android:isIndicator="true"
+            android:visibility="gone"
+            style="?android:attr/ratingBarStyleSmall"
+            android:layout_centerVertical="true"/>
+
+        <TextView
+            android:id="@+id/ratePoints"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="13"
+            android:textSize="12sp"
+            android:visibility="gone"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="100dp"/>
+
+        <TextView
+            android:id="@+id/prductPrice"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text=""
+            android:textSize="15sp"
+            android:textColor="#1da664"
+            android:layout_alignParentRight="true"/>
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+
+        >
+        <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="238dp"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="23dp"
+        android:background="#fff">
+
+        <android.support.v4.view.ViewPager
+            android:id="@+id/productViewPager"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+        </RelativeLayout>
+
+        <!--<RelativeLayout-->
+            <!--android:orientation="horizontal"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="23dp"-->
+            <!--android:layout_alignParentBottom="true"-->
+            <!--android:background="#30000000">-->
+            <!--<ImageView-->
+                    <!--android:id="@+id/circleAnim"-->
+                    <!--android:layout_width="wrap_content"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:layout_centerInParent="true"-->
+                    <!--android:src="@drawable/circle1"/>-->
+        <!--</RelativeLayout>-->
+    </RelativeLayout>
+
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="15dp"
+        android:layout_marginRight="15dp"
+        android:layout_marginLeft="15dp">
+
+        <LinearLayout
+            android:id="@+id/favorite_lbl"
+            android:layout_width="65dp"
+            android:layout_height="38dp"
+            android:gravity="center"
+            android:clickable="true"
+            android:background="@drawable/button_effect_gray"
+            android:weightSum="1"
+            android:onClick="addToFavorite">
+            <ImageView
+                android:id="@+id/img_favorite"
+                android:layout_width="11dp"
+                android:layout_height="11dp"
+                android:src="@drawable/unfavorite_product"
+                android:layout_gravity="center" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="38dp"
+            android:gravity="center"
+            android:layout_marginLeft="10dp"
+            android:weightSum="1">
+
+            <Button
+                android:id="@+id/addcartbtn"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="ADD TO CART"
+                android:textSize="11sp"
+                android:textColor="#fff"
+                android:background="@drawable/button_effect_green"
+                android:textStyle="bold"
+                android:clickable="true"
+                android:onClick="addToCart"/>
+        </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:layout_marginBottom="5dp"
+        android:layout_marginTop="17dp"
+        android:orientation="vertical">
+
+        <RelativeLayout
+            android:id="@+id/specification_lbl"
+            android:layout_width="match_parent"
+            android:layout_height="38dp"
+            android:background="#e8e8e8">
+            <TextView
+                android:id="@+id/specification1"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="SPECIFICATION"
+                android:textColor="#000"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                android:gravity="left|center"
+                android:paddingLeft="10dp"/>
+            <ImageView
+                android:id="@+id/arrow_spec"
+                android:layout_width="11dp"
+                android:layout_height="11dp"
+                android:src="@drawable/arrow_down"
+                android:layout_alignParentRight="true"
+                android:layout_centerInParent="true"
+                android:layout_marginRight="12dp"/>
+        </RelativeLayout>
+        <LinearLayout
+            android:id="@+id/tableLayout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <TableLayout
+                android:id="@+id/tableLayout1"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:paddingTop="10dp"
+                android:paddingBottom="5dp">
+            </TableLayout>
+        </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:layout_marginBottom="15dp"
+        android:orientation="vertical">
+
+        <!--<TabHost-->
+            <!--android:layout_width="fill_parent"-->
+            <!--android:layout_height="fill_parent"-->
+            <!--android:id="@android:id/tabhost">-->
+            <!--<LinearLayout-->
+                <!--android:id="@+id/LinearLayout01"-->
+                <!--android:orientation="vertical"-->
+                <!--android:layout_height="fill_parent"-->
+                <!--android:layout_width="fill_parent">-->
+                <!--<TabWidget-->
+                    <!--android:id="@android:id/tabs"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:layout_width="fill_parent">-->
+                <!--</TabWidget>-->
+                <!--<FrameLayout-->
+                    <!--android:id="@android:id/tabcontent"-->
+                    <!--android:layout_height="fill_parent"-->
+                    <!--android:layout_width="fill_parent">-->
+                <!--</FrameLayout>-->
+            <!--</LinearLayout>-->
+        <!--</TabHost>-->
+        <RelativeLayout
+            android:id="@+id/description_lbl"
+            android:layout_width="match_parent"
+            android:layout_height="38dp"
+            android:background="#e8e8e8">
+            <TextView
+                android:id="@+id/description1"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="DESCRIPTION"
+                android:textColor="#000"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                android:gravity="left|center"
+                android:paddingLeft="10dp"/>
+            <ImageView
+                android:id="@+id/arrow_desc"
+                android:layout_width="11dp"
+                android:layout_height="11dp"
+                android:src="@drawable/arrow_down"
+                android:layout_alignParentRight="true"
+                android:layout_centerInParent="true"
+                android:layout_marginRight="12dp"/>
+        </RelativeLayout>
+        <LinearLayout
+            android:id="@+id/productDesc_lbl"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <TextView
+                android:id="@+id/productDesc"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text=""
+                android:textColor="#b2b2b2"
+                android:textSize="14sp"/>
+        </LinearLayout>
+    </LinearLayout>
+
+</LinearLayout>
+
+</ScrollView>
+    <include layout="@layout/progressbar"></include>
+    </RelativeLayout>

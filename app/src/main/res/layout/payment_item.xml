@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                style="@style/item_two"
+                android:background="@android:color/transparent">
+
+    <ImageView
+            android:id="@+id/card_icon"
+            style="@style/ImageListStyle"
+            android:contentDescription="@string/img_logo"
+            android:src="@drawable/american_express_icon"/>
+
+    <ImageView
+            style="@style/WrapContent"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:contentDescription="@string/img_logo"
+            android:src="@drawable/op_ic_list_more"/>
+
+    <com.op.android.activities.OPFontTextView
+            android:id="@+id/card_name"
+            style="@style/MainText20boldBlack"
+            android:layout_centerVertical="true"
+            android:layout_toRightOf="@+id/card_icon"/>
+
+</RelativeLayout>
