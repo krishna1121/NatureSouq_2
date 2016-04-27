@@ -258,8 +258,8 @@ public class ChildFragment extends Fragment {
                 String message = jsonResponse.getString("message");
                 if (status.equals("1")) {
 
-
                     gridArray.clear();
+
                     JSONArray jsonArray = jsonResponse.getJSONArray("data");
                     //JSONArray jsonArray = new JSONArray();
                     if (jsonArray.length() > 0) {

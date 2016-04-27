@@ -21,7 +21,6 @@ import com.naturesouq.adapter.CartBaseAdapter;
 import com.naturesouq.model.CartRowItems;
 import com.naturesouq.model.HomeDataProvider;
 import com.naturesouq.navigation.HomeFragment;
-
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -136,8 +135,10 @@ public class Cart extends Activity implements CartBaseAdapter.ViewClickListener 
         String email= NatureSouqPrefrences.getUserName(Cart.this);
         String pass=NatureSouqPrefrences.getUserPass(Cart.this);
         len=cartRowItemsList.size();
+
         productID=new String[len];
         productQuantity=new String[len];
+
         for(int i=0;i<len;i++){
             productID[i]= cartRowItemsList.get(i).getProduct_id();
             productQuantity[i]=cartRowItemsList.get(i).getQty();

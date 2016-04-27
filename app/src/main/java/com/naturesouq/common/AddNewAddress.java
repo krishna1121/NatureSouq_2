@@ -104,13 +104,17 @@ public class AddNewAddress extends Activity {
     public void addCountrySpinner() {
         final String DEFAULT_LOCAL = "United Arab Emirates";
         Locale[] locales = Locale.getAvailableLocales();
+
         ArrayList<String> list = new ArrayList<String>();
         for (Locale locale : locales) {
+
             String country = locale.getDisplayCountry();
+
             if (country.trim().length()>0 && !list.contains(country)) {
                 list.add(country);
             }
         }
+
         Collections.sort(list);
 
         spinAdapter = new CustomSpinnerAdapter(getApplicationContext(), list);

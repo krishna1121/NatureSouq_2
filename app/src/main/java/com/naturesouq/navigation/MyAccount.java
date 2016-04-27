@@ -1,12 +1,15 @@
 package com.naturesouq.navigation;
 
 import android.app.Activity;
+import android.app.Dialog;
 import android.app.Fragment;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Typeface;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -14,8 +17,10 @@ import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.ScrollView;
 import android.widget.TextView;
@@ -48,6 +53,7 @@ import me.drakeet.materialdialog.MaterialDialog;
 /**
  * Created by SI-Andriod on 15-Oct-15.
  */
+
 public class MyAccount extends Fragment implements MyAccountOrderAdapter.ViewClickListener {
 
     List<MyAccountOrderItems> myAccountOrderItemsList ;
@@ -74,7 +80,7 @@ public class MyAccount extends Fragment implements MyAccountOrderAdapter.ViewCli
     ChangeAddressListItem objectAddress1;
     public static HomeDataProvider provider;
     JSONArray jsonArray;
-    Button view_order ;
+    Button view_order , logout;
 
     @Nullable
     @Override
@@ -105,6 +111,58 @@ public class MyAccount extends Fragment implements MyAccountOrderAdapter.ViewCli
             viewAllOrders = (Button) rootview.findViewById(R.id.view_order);
             myReview = (Button) rootview.findViewById(R.id.review_order);
             myFavorite = (Button) rootview.findViewById(R.id.my_fevorite);
+            logout = (Button) rootview.findViewById(R.id.logout);
+
+            //Logout existing user .
+            logout.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+
+                    final Dialog dialog = new Dialog(activity);
+                    dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+                    dialog.getWindow().setBackgroundDrawableResource(R.color.transparent);
+                    dialog.setContentView(R.layout.logout_confirm_dialog);
+
+                    Button cancel = (Button) dialog.findViewById(R.id.cancel_dialog);
+                    Button ok = (Button) dialog.findViewById(R.id.ok_dialog);
+
+                    TextView dgTitle = (TextView) dialog.findViewById(R.id.dialog_title);
+                    final TextView messageText = (TextView) dialog.findViewById(R.id.dialog_message);
+                    dgTitle.setText(R.string.passconfirmation);
+                    messageText.setText("Do you want to logout? ");
+                    cancel.setText("Cancel");
+                    ok.setText("Ok");
+
+                    cancel.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            dialog.dismiss();
+                        }
+                    });
+
+                    ok.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+
+                            SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(activity);
+                            SharedPreferences.Editor edt = prefs.edit();
+                            edt.clear();
+                            edt.commit();
+
+                            //Open sign in Activity
+                            Intent intent = new Intent(activity , Login.class);
+                            startActivity(intent);
+
+                            //Open Home Frament
+                            MainActivity.getInstance().displayView(0, 0, "", "");
+
+                            dialog.dismiss();
+                        }
+                    });
+                    dialog.show();
+
+                }
+            });
 
             addressLBL = (TextView)rootview.findViewById(R.id.add_lbl);
             shippingAddress = (TextView)rootview.findViewById(R.id.shipping_address);
@@ -281,6 +339,8 @@ public class MyAccount extends Fragment implements MyAccountOrderAdapter.ViewCli
         }
         return rootview;
     }
+
+
 
     public void selectAddress(){
 

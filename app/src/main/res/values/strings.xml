@@ -99,5 +99,11 @@
     <string name="save_payment_card">Save Payment Details </string>
     <string name="pay_str1">THANK YOU</string>
     <string name="pay_str2">Your Order has been placed and is being processed.</string>
-	
+    <string name="confirmation">Confirmation</string>
+    <string name="passconfirmation">Confirmation!</string>
+    <string name="title">Title</string>
+    <string name="message">Message</string>
+    <string name="cancel">Cancel</string>
+    <string name="ok">Ok</string>
+
 </resources>

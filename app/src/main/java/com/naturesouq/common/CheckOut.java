@@ -12,7 +12,6 @@ import android.widget.Button;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import com.naturesouq.R;
 import com.naturesouq.model.AddressdataItem;
 import com.op.android.activities.OPActivity;
@@ -22,7 +21,6 @@ import com.op.android.card.OPPayData;
 import com.op.android.card.OPPayType;
 import com.op.android.net.OPErrorAction;
 import com.op.android.net.OPServerResponse;
-
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -45,13 +43,13 @@ public class CheckOut extends OPActivity {
     TextView billingAddress, subtotalPrice, shippingPrice, totalPrice;
     ProgressBar progressBar;
     Button changeAddresButton, onlinePayment;
-    static Activity activity ;
+    static Activity activity;
     String orderId, merchantId;
     String price = "";
     String shoppingCartId = "";
     String value, address, addressID;
-    Button  cashOnDelvry ;
-    CheckOutAddressTask checkOutAddressTask ;
+    Button cashOnDelvry;
+    CheckOutAddressTask checkOutAddressTask;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -72,7 +70,7 @@ public class CheckOut extends OPActivity {
         shippingPrice = (TextView) findViewById(R.id.shipping_Price);
         totalPrice = (TextView) findViewById(R.id.total_Price);
         changeAddresButton = (Button) findViewById(R.id.changeAddresButton);
-        cashOnDelvry = (Button)findViewById(R.id.CASH_ON_DELIVERY);
+        cashOnDelvry = (Button) findViewById(R.id.CASH_ON_DELIVERY);
         onlinePayment = (Button) findViewById(R.id.onlinePayment);
 
         boolean networkStatus = new DialogBox(this).checkInternetConnection();
@@ -117,10 +115,10 @@ public class CheckOut extends OPActivity {
             //Intent cashOnDelIntent = new Intent(this, OrderDetail.class);
             Intent cashOnDelIntent = new Intent(this, OrderStatus.class);
             cashOnDelIntent.putExtra("orderId", orderId);
-            startActivityForResult(cashOnDelIntent , 9);
+            startActivityForResult(cashOnDelIntent, 9);
             //startActivity(cashOnDelIntent);
-        }else{
-            Toast.makeText(getApplicationContext() , "Comminication failed with Server, Please do checkout again !" ,Toast.LENGTH_SHORT).show();
+        } else {
+            Toast.makeText(getApplicationContext(), "Comminication failed with Server, Please do checkout again !", Toast.LENGTH_SHORT).show();
         }
     }
 
@@ -166,7 +164,7 @@ public class CheckOut extends OPActivity {
                             orderId = object.getString("order_id");
 
                             //if (value.equalsIgnoreCase("Login")) {
-                                //progressBar.setVisibility(View.INVISIBLE);
+                            //progressBar.setVisibility(View.INVISIBLE);
                             //}
                             //progressBar.setVisibility(View.GONE);
 
@@ -240,9 +238,8 @@ public class CheckOut extends OPActivity {
                                 changeAddresButton.setEnabled(false);
                                 onlinePayment.setEnabled(false);
                                 cashOnDelvry.setEnabled(false);
-                                checkOutAddressTask =new CheckOutAddressTask(jsonObject, "");
+                                checkOutAddressTask = new CheckOutAddressTask(jsonObject, "");
                                 checkOutAddressTask.execute(CHECKOUT_CURRENT_ADDRESS_URL);
-
                             }
                             JSONObject jsonObject = new JSONObject();
                             jsonObject.put("apikey", "naturesouq#123@apikey");
@@ -261,7 +258,7 @@ public class CheckOut extends OPActivity {
                             String country_id = jsonObject.getString("country_id");
                             String postcode = jsonObject.getString("postcode");
                             String region = jsonObject.getString("region");
-                            String region_id = jsonObject.getString("region_id");
+                            //String region_id = jsonObject.getString("region_id");
                             String street = jsonObject.getString("street");
                             String telephone = jsonObject.getString("telephone");
 
@@ -329,8 +326,8 @@ public class CheckOut extends OPActivity {
     public void onCompleteOrder(View view) {
         //Start PayFort from Here .
         OPCredentials opCredentials = new OPCredentials();
-        //opCredentials.initOPParams(Utility.TEST_PSPID, Utility.TEST_USER_NAME, Utility.TEST_PASSWORD, Utility.TEST_SHAIN_PASSPHRASE);
-        opCredentials.initOPParams(Utility.LIVE_PSPID, Utility.LIVE_USER_NAME, Utility.LIVE_PASSWORD, Utility.LIVE_SHAIN_PASSPHRASE);
+        opCredentials.initOPParams(Utility.TEST_PSPID, Utility.TEST_USER_ID, Utility.TEST_PASSWORD, Utility.TEST_SHAIN_PASSPHRASE);
+        //opCredentials.initOPParams(Utility.LIVE_PSPID, Utility.LIVE_USER_NAME, Utility.LIVE_PASSWORD, Utility.LIVE_SHAIN_PASSPHRASE);
         OPPayData payData = new OPPayData();
         payData.setPayType(OPPayType.NewPayment);
         if (!TextUtils.isEmpty(orderId))
@@ -358,8 +355,8 @@ public class CheckOut extends OPActivity {
         paymethods.add(OPCardListItem.createPostFinance());
         paymethods.add(OPCardListItem.createDirectdebitsDe());
         paymethods.add(OPCardListItem.createJcb());
-        sendNewRequest(payData, opCredentials, paymethods, Backend.PRODUCTION);
-        //sendNewRequest(payData, opCredentials, paymethods, Backend.TEST);
+        //sendNewRequest(payData, opCredentials, paymethods, Backend.PRODUCTION);
+        sendNewRequest(payData, opCredentials, paymethods, Backend.TEST);
 
     }
 

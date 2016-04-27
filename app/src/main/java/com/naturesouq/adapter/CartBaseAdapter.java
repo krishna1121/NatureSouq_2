@@ -11,7 +11,6 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import com.naturesouq.R;
 import com.naturesouq.common.Cart;
 import com.naturesouq.model.CartRowItems;

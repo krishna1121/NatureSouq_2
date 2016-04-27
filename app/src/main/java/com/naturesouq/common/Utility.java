@@ -18,12 +18,12 @@ public class Utility {
 
     //Payfort Credentials .
     public static final String TEST_PSPID ="naturesouq";
-    public static final String TEST_USER_NAME ="somdev1234";
+    public static final String TEST_USER_ID ="somdev1234";
     public static final String TEST_PASSWORD ="asdf@1234";
     public static final String TEST_SHAIN_PASSPHRASE ="NatureSouq@518754";
 
     public static final String LIVE_PSPID ="naturesouq";
-    public static final String LIVE_USER_NAME ="jayadmin";
+    public static final String LIVE_USER_ID ="jayadmin";
     public static final String LIVE_PASSWORD ="@almoo$a-&04!!";
     public static final String LIVE_SHAIN_PASSPHRASE ="naturesouq";
 
