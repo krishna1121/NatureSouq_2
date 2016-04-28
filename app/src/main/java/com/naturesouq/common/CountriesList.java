@@ -1,10 +1,13 @@
 package com.naturesouq.common;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 /**
  * Created by SI-Andriod on 27-Apr-16.
  */
 
-public class CountriesList {
+public class CountriesList  implements Parcelable {
 
     private String countryName ;
     private String countryCode ;
@@ -44,4 +47,36 @@ public class CountriesList {
     public void setShippingCharge(String shippingCharge) {
         this.shippingCharge = shippingCharge;
     }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(countryName);
+        dest.writeString(countryCode);
+        dest.writeString(shippingCharge);
+
+    }
+
+    protected CountriesList(Parcel in) {
+        this.countryName = in.readString();
+        this.countryCode = in.readString();
+        this.shippingCharge = in.readString();
+
+    }
+
+    public static final Creator<CountriesList> CREATOR = new Creator<CountriesList>() {
+        @Override
+        public CountriesList createFromParcel(Parcel in) {
+            return new CountriesList(in);
+        }
+
+        @Override
+        public CountriesList[] newArray(int size) {
+            return new CountriesList[size];
+        }
+    };
 }

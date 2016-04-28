@@ -37,6 +37,7 @@ public class CheckOut extends OPActivity {
     private static final String CHECKOUT_CURRENT_ADDRESS_URL = Utility.baseURL + "cartaddress.php";
     private static final String CHECKOUT_DEFAULTADDRESS = Utility.baseURL + "selectAddress.php";
     private static final String ORDERID_URL = Utility.baseURL + "order.php";
+    private static final String COD_URL = Utility.baseURL + "cod_order.php";
     private static final String UPDATE_CART_URL = Utility.baseURL + "updateCart.php";
     private static final String generateOrderURL = Utility.baseURL + "orderstatus.php";
     AddressdataItem objectAddress;
@@ -109,18 +110,7 @@ public class CheckOut extends OPActivity {
         }
     }
 
-    // Do cash on delivery .
-    public void onCashDelivery(View v) {
-        if (!TextUtils.isEmpty(orderId)) {
-            //Intent cashOnDelIntent = new Intent(this, OrderDetail.class);
-            Intent cashOnDelIntent = new Intent(this, OrderStatus.class);
-            cashOnDelIntent.putExtra("orderId", orderId);
-            startActivityForResult(cashOnDelIntent, 9);
-            //startActivity(cashOnDelIntent);
-        } else {
-            Toast.makeText(getApplicationContext(), "Comminication failed with Server, Please do checkout again !", Toast.LENGTH_SHORT).show();
-        }
-    }
+
 
     public class CheckOutAddressTask extends AsyncTask<String, Void, String> {
         JSONObject obj;
@@ -152,7 +142,6 @@ public class CheckOut extends OPActivity {
                 JSONObject jsonResponse = new JSONObject(result);
                 String status = jsonResponse.getString("status");
                 String message = jsonResponse.getString("message");
-
                 progressBar.setVisibility(View.GONE);
 
                 if (status.equals("1")) {
@@ -163,12 +152,57 @@ public class CheckOut extends OPActivity {
                             object.getString("marchant_id");
                             orderId = object.getString("order_id");
 
-                            //if (value.equalsIgnoreCase("Login")) {
-                            //progressBar.setVisibility(View.INVISIBLE);
-                            //}
-                            //progressBar.setVisibility(View.GONE);
+                            //Now Order is success so Start Payment Activity .
+                            OPCredentials opCredentials = new OPCredentials();
+                            opCredentials.initOPParams(Utility.TEST_PSPID, Utility.TEST_USER_ID, Utility.TEST_PASSWORD, Utility.TEST_SHAIN_PASSPHRASE);
+                            //opCredentials.initOPParams(Utility.LIVE_PSPID, Utility.LIVE_USER_NAME, Utility.LIVE_PASSWORD, Utility.LIVE_SHAIN_PASSPHRASE);
+                            OPPayData payData = new OPPayData();
+                            payData.setPayType(OPPayType.NewPayment);
+                            if (!TextUtils.isEmpty(orderId))
+                                payData.setOrderId(orderId);
+                            // the merchant's order
 
-                        } else if (value1.equalsIgnoreCase("OrderSuccess")) {
+                            if (!TextUtils.isEmpty(totalPrice.getText())) {
+                                price = (String) totalPrice.getText();
+                                int priceToPassToPayfort = Integer.parseInt(price) * 100;
+                                payData.setAmount(priceToPassToPayfort);
+                                payData.setAmount(priceToPassToPayfort * 100);
+                            }
+
+                            payData.setCurrency("AED");
+
+                            ArrayList<OPCardListItem> paymethods = new ArrayList<OPCardListItem>();
+                            paymethods.add(OPCardListItem.createAmericanExpress());
+                            paymethods.add(OPCardListItem.createVisaCard());
+                            paymethods.add(OPCardListItem.createDinersClub());
+                            paymethods.add(OPCardListItem.createMasterCard());
+                            paymethods.add(OPCardListItem.createMaestro());
+                            paymethods.add(OPCardListItem.createBcmc());
+                            paymethods.add(OPCardListItem.createDirectdebitsAt());
+                            //paymethods.add(OPCardListItem.createDirectdebitsNl());
+                            paymethods.add(OPCardListItem.createPostFinance());
+                            paymethods.add(OPCardListItem.createDirectdebitsDe());
+                            paymethods.add(OPCardListItem.createJcb());
+                            //sendNewRequest(payData, opCredentials, paymethods, Backend.PRODUCTION);
+                            sendNewRequest(payData, opCredentials, paymethods, Backend.TEST);
+
+                        }else if(value1.equals("COD")){
+                            JSONObject object = jsonResponse.getJSONObject("data");
+                            object.getString("marchant_id");
+                            String orderIdCod = object.getString("order_id");
+
+                            if (!TextUtils.isEmpty(orderIdCod)) {
+                                //Intent cashOnDelIntent = new Intent(this, OrderDetail.class);
+                                Intent cashOnDelIntent = new Intent(CheckOut.this, OrderStatus.class);
+                                cashOnDelIntent.putExtra("orderId", orderIdCod);
+                                startActivityForResult(cashOnDelIntent, 9);
+                                //startActivity(cashOnDelIntent);
+                            } else {
+                                Toast.makeText(getApplicationContext(), "Comminication failed with Server, Please do checkout again !", Toast.LENGTH_SHORT).show();
+                            }
+
+                        }
+                        else if (value1.equalsIgnoreCase("OrderSuccess")) {
                             try {
                                 //progressBar.setVisibility(View.INVISIBLE);
 
@@ -241,11 +275,11 @@ public class CheckOut extends OPActivity {
                                 checkOutAddressTask = new CheckOutAddressTask(jsonObject, "");
                                 checkOutAddressTask.execute(CHECKOUT_CURRENT_ADDRESS_URL);
                             }
-                            JSONObject jsonObject = new JSONObject();
+                            /*JSONObject jsonObject = new JSONObject();
                             jsonObject.put("apikey", "naturesouq#123@apikey");
                             jsonObject.put("shoppingcart_id", shoppingCartId);
                             checkOutAddressTask = new CheckOutAddressTask(jsonObject, "ORDER");
-                            checkOutAddressTask.execute(ORDERID_URL);
+                            checkOutAddressTask.execute(ORDERID_URL);*/
                         }
                     } else {
                         JSONObject object = jsonResponse.getJSONObject("data");
@@ -256,6 +290,15 @@ public class CheckOut extends OPActivity {
                             String city = jsonObject.getString("city");
                             String company = jsonObject.getString("company");
                             String country_id = jsonObject.getString("country_id");
+
+                            String countryName = "";
+                            for(CountriesList listItem : NatureSouqPrefrences.countriesList) {
+                                if (listItem.getCountryCode().equals(country_id)) {
+                                    countryName = listItem.getCountryName();
+                                    break;
+                                }
+                            }
+
                             String postcode = jsonObject.getString("postcode");
                             String region = jsonObject.getString("region");
                             //String region_id = jsonObject.getString("region_id");
@@ -266,11 +309,15 @@ public class CheckOut extends OPActivity {
                             String grandTotal = object.getString("grandTotalAmount");
                             String shippingAmount = object.getString("shipingAmount");
 
-                            String Address_street = street + ", " + city + "\n" + region + ", " + country_id + ", " + postcode + "\n" + telephone;
+                            String Address_street = street + ", " + city + "\n" + region + ", " + countryName + ", " + postcode + "\n" + telephone;
 
                             billingAddress.setText(Address_street);
                             subtotalPrice.setText(totalAmount);
                             shippingPrice.setText(shippingAmount);
+
+                            //String shippingCharge = NatureSouqPrefrences.getShippingCharge(getApplicationContext());
+                            //shippingPrice.setText(shippingCharge);
+
                             totalPrice.setText(grandTotal);
                             changeAddresButton.setEnabled(true);
                             onlinePayment.setEnabled(true);
@@ -323,41 +370,31 @@ public class CheckOut extends OPActivity {
         startActivityForResult(newAddressIntent, 19);
     }
 
-    public void onCompleteOrder(View view) {
-        //Start PayFort from Here .
-        OPCredentials opCredentials = new OPCredentials();
-        opCredentials.initOPParams(Utility.TEST_PSPID, Utility.TEST_USER_ID, Utility.TEST_PASSWORD, Utility.TEST_SHAIN_PASSPHRASE);
-        //opCredentials.initOPParams(Utility.LIVE_PSPID, Utility.LIVE_USER_NAME, Utility.LIVE_PASSWORD, Utility.LIVE_SHAIN_PASSPHRASE);
-        OPPayData payData = new OPPayData();
-        payData.setPayType(OPPayType.NewPayment);
-        if (!TextUtils.isEmpty(orderId))
-            payData.setOrderId(orderId);
-        // the merchant's order
+    // Do cash on delivery .
+    public void onCashDelivery(View v) {
 
-        if (!TextUtils.isEmpty(totalPrice.getText())) {
-            price = (String) totalPrice.getText();
-            int priceToPassToPayfort = Integer.parseInt(price) * 100;
-            //payData.setAmount(priceToPassToPayfort);
-            payData.setAmount(1 * 100);
+        try {
+            JSONObject jsonObject = new JSONObject();
+            jsonObject.put("apikey", "naturesouq#123@apikey");
+            jsonObject.put("shoppingcart_id", shoppingCartId);
+            checkOutAddressTask = new CheckOutAddressTask(jsonObject, "COD");
+            checkOutAddressTask.execute(COD_URL);
+        } catch (JSONException e) {
+            e.printStackTrace();
         }
+    }
 
-        payData.setCurrency("AED");
+    public void onCompleteOrder(View view) {
 
-        ArrayList<OPCardListItem> paymethods = new ArrayList<OPCardListItem>();
-        paymethods.add(OPCardListItem.createAmericanExpress());
-        paymethods.add(OPCardListItem.createVisaCard());
-        paymethods.add(OPCardListItem.createDinersClub());
-        paymethods.add(OPCardListItem.createMasterCard());
-        paymethods.add(OPCardListItem.createMaestro());
-        paymethods.add(OPCardListItem.createBcmc());
-        paymethods.add(OPCardListItem.createDirectdebitsAt());
-        //paymethods.add(OPCardListItem.createDirectdebitsNl());
-        paymethods.add(OPCardListItem.createPostFinance());
-        paymethods.add(OPCardListItem.createDirectdebitsDe());
-        paymethods.add(OPCardListItem.createJcb());
-        //sendNewRequest(payData, opCredentials, paymethods, Backend.PRODUCTION);
-        sendNewRequest(payData, opCredentials, paymethods, Backend.TEST);
-
+        try {
+            JSONObject jsonObject = new JSONObject();
+            jsonObject.put("apikey", "naturesouq#123@apikey");
+            jsonObject.put("shoppingcart_id", shoppingCartId);
+            checkOutAddressTask = new CheckOutAddressTask(jsonObject, "ORDER");
+            checkOutAddressTask.execute(ORDERID_URL);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
     }
 
     @Override

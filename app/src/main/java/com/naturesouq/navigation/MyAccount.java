@@ -30,6 +30,7 @@ import com.naturesouq.adapter.MyAccountOrderAdapter;
 import com.naturesouq.common.ChangeAddress;
 import com.naturesouq.common.ChangePassword;
 import com.naturesouq.common.ConnectAsynchronously;
+import com.naturesouq.common.CountriesList;
 import com.naturesouq.common.DialogBox;
 import com.naturesouq.common.Login;
 import com.naturesouq.common.MainActivity;
@@ -453,6 +454,15 @@ public class MyAccount extends Fragment implements MyAccountOrderAdapter.ViewCli
                             String city = jsonObject.getString("city");
                             String company = jsonObject.getString("company");
                             String country_id = jsonObject.getString("country_id");
+
+                            String countryName = "";
+                            for(CountriesList listItem : NatureSouqPrefrences.countriesList) {
+                                if (listItem.getCountryCode().equals(country_id)) {
+                                    countryName = listItem.getCountryName();
+                                    break;
+                                }
+                            }
+
                             String firstname = jsonObject.getString("firstname");
                             String lastname = jsonObject.getString("lastname");
                             String postcode = jsonObject.getString("postcode");
@@ -465,7 +475,7 @@ public class MyAccount extends Fragment implements MyAccountOrderAdapter.ViewCli
                             String grandTotal=object.getString("grandTotalAmount");
                             String shippingAmount=object.getString("shipingAmount");
 
-                            address = street+", "+city+"\n"+region+", "+country_id+", "+postcode+"\n"+telephone;
+                            address = street+", "+city+"\n"+region+", "+countryName+", "+postcode+"\n"+telephone;
                             contact.setText(telephone);
                             shippingAddress.setText(address);
                             NatureSouqPrefrences.setAddressId("address_id",getActivity(), address_id);
@@ -497,7 +507,6 @@ public class MyAccount extends Fragment implements MyAccountOrderAdapter.ViewCli
         }
     }
 
-
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -514,6 +523,7 @@ public class MyAccount extends Fragment implements MyAccountOrderAdapter.ViewCli
                 address_id=data.getStringExtra("Address_id");
                 shippingAddress.setText(address);
             }else{
+
                 if (requestCode == 16) {
                     value = data.getStringExtra("from");
                     // Toast.makeText(getActivity().getApplicationContext(), "" + value, Toast.LENGTH_SHORT).show();

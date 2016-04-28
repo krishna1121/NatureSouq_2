@@ -2,9 +2,23 @@ package com.naturesouq.common;
 
 import android.app.Application;
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.OnSharedPreferenceChangeListener;
+import android.os.AsyncTask;
 import android.preference.PreferenceManager;
+import android.util.Log;
+import android.view.View;
+
+import com.naturesouq.adapter.ChangeAddressAdapter;
+import com.naturesouq.model.ChangeAddressListItem;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by shahid on 10/22/2015.
@@ -12,7 +26,6 @@ import android.preference.PreferenceManager;
 
 public class NatureSouqPrefrences extends Application{
     NatureSouqPrefrences natureSouqPrefrences;
-
     static final String SHOPPING_CART_ID = "shopping_cart_id";
     static final String PRODUCT_ID = "product_id";
     static final String USER_NAME = "user_name";
@@ -29,11 +42,24 @@ public class NatureSouqPrefrences extends Application{
     static final String USER_LAST_NAME = "last_name";
     static final String USER_CONTACT_NO = "contact_no";
     static final String ADDRESS_ID = "address_id";
+    static final String SHIPPING_CHARGE = "shipping_charge";
+    private static final String COUNTRIES_LIST_URL = Utility.baseURL + "countrydata.php" ;
+    public static ArrayList<CountriesList> countriesList ;
 
     @Override
     public void onCreate() {
         super.onCreate();
         natureSouqPrefrences = this;
+
+        //Fire another webservice for Countries list .
+        try {
+            JSONObject jobjC = new JSONObject();
+            jobjC.put("apikey", "naturesouq#123@apikey");
+            AddressTask countriesListTask =  new AddressTask(jobjC, "countriesList");
+            countriesListTask.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR, COUNTRIES_LIST_URL);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
 
     }
 
@@ -213,5 +239,79 @@ public class NatureSouqPrefrences extends Application{
         String id = getSharedPreferences(ctx).getString(ADDRESS_ID, "");
         return id;
     }
+
+
+    public static void setShippingCharge(Context ctx, String charge) {
+        SharedPreferences.Editor editor = getSharedPreferences(ctx).edit();
+        editor.putString(SHIPPING_CHARGE, charge);
+        editor.commit();
+    }
+
+    public static String getShippingCharge(Context ctx) {
+        String id = getSharedPreferences(ctx).getString(SHIPPING_CHARGE, "");
+        return id;
+    }
+
+    public class AddressTask extends AsyncTask<String, Void, String> {
+        JSONObject obj;
+        String taskIdentifier;
+
+        //Show registration progress.
+        public AddressTask(JSONObject jobj, String taskIdentifier) {
+            obj = jobj;
+            this.taskIdentifier = taskIdentifier;
+        }
+
+        @Override
+        protected String doInBackground(String... urls) {
+            return ConnectAsynchronously.connectAsynchronously(urls[0], obj);
+        }
+
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+        }
+
+        @Override
+        protected void onPostExecute(String result) {
+
+            try {
+                JSONObject jsonResponse = new JSONObject(result);
+                String status = jsonResponse.getString("status");
+                String message = jsonResponse.getString("message");
+
+                switch (status) {
+                    case "0":
+
+                        break;
+                    case "1":
+
+                       if(taskIdentifier.equals("countriesList")) {
+                            JSONArray jsonArray = jsonResponse.getJSONArray("data");
+                            countriesList  = new ArrayList<>();
+
+                            for(int countryCount = 0 ; countryCount < jsonArray.length() ; countryCount++){
+                                JSONObject jsonObject = jsonArray.getJSONObject(countryCount) ;
+                                String country_id = jsonObject.getString("country_id") ;
+                                String name = jsonObject.getString("name");
+                                String shipping_cost = jsonObject.getString("shipping_cost");
+
+                                CountriesList countriesListItem = new CountriesList(name,country_id ,shipping_cost);
+                                countriesList.add(countriesListItem) ;
+                            }
+                        }
+                        break;
+                    case "2":
+                        Log.d("ChangeAdress ::", "Address not exist in list");
+                        break;
+                    default:
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            super.onPostExecute(result);
+        }
+    }
+
 
 }

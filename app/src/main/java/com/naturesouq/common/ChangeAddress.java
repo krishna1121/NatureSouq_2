@@ -50,6 +50,7 @@ public class ChangeAddress extends Activity implements ChangeAddressAdapter.View
     static Activity activity;
      int editedPosition ;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -85,8 +86,14 @@ public class ChangeAddress extends Activity implements ChangeAddressAdapter.View
                 JSONObject jobj = new JSONObject();
                 jobj.put("customer_id", customer_id);
                 jobj.put("apikey", "naturesouq#123@apikey");
+                ChangeAddressTask changeAddressTask =  new ChangeAddressTask(jobj, "setAddressList");
+                changeAddressTask.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR, ADDRESS_LIST_URL);
 
-                new ChangeAddressTask(jobj, "setAddressList").execute(ADDRESS_LIST_URL);
+                /*//Fire another webservice for Countries list .
+                JSONObject jobjC = new JSONObject();
+                jobjC.put("apikey","naturesouq#123@apikey");
+                ChangeAddressTask countriesListTask =  new ChangeAddressTask(jobjC, "countriesList");
+                countriesListTask.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR, COUNTRIES_LIST_URL);*/
 
             } catch (Exception e) {
                 e.printStackTrace();
@@ -133,15 +140,18 @@ public class ChangeAddress extends Activity implements ChangeAddressAdapter.View
     }*/
 
     public void onAddNewAddress(View view) {
-        if (value != null) {
+        if (value != null && NatureSouqPrefrences.countriesList.size()>0) {
+
             if (value.equals("fromAccountFragment")) {
                 Intent addNewIntent = new Intent(ChangeAddress.this, AddNewAddress.class);
                 addNewIntent.putExtra("OtherToChangeAddress", "fromAccountFragment");
+                addNewIntent.putParcelableArrayListExtra("countrieslist" , NatureSouqPrefrences.countriesList) ;
                 addNewIntent.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
                 startActivityForResult(addNewIntent, 16);
             } else if (value.equals("fromCheckOut")) {
                 Intent addNewIntent = new Intent(ChangeAddress.this, AddNewAddress.class);
                 addNewIntent.putExtra("OtherToChangeAddress", "fromCheckOut");
+                addNewIntent.putParcelableArrayListExtra("countrieslist" , NatureSouqPrefrences.countriesList) ;
                 addNewIntent.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
                 startActivity(addNewIntent);
             }
@@ -193,7 +203,14 @@ public class ChangeAddress extends Activity implements ChangeAddressAdapter.View
 
         @Override
         protected String doInBackground(String... urls) {
-            return ConnectAsynchronously.connectAsynchronously(urls[0], obj);
+            String result ;
+            if(taskIdentifier.equals("countriesList")){
+                result = ConnectAsynchronously.connectAsynchronously(urls[0], obj);
+            }else{
+                result = ConnectAsynchronously.connectAsynchronously(urls[0], obj);
+            }
+
+            return result ;
         }
 
         @Override
@@ -236,13 +253,22 @@ public class ChangeAddress extends Activity implements ChangeAddressAdapter.View
                                     String company = jsonObject.getString("company");
                                     String city = jsonObject.getString("city");
                                     String country_id = jsonObject.getString("country_id");
+                                    String countryName = "";
+
+                                    for(CountriesList listItem : NatureSouqPrefrences.countriesList) {
+                                        if (listItem.getCountryCode().equals(country_id)) {
+                                            countryName = listItem.getCountryName();
+                                            break;
+                                        }
+                                    }
+
                                     String state = jsonObject.getString("state");
                                     String postcode = jsonObject.getString("postcode");
                                     String telephone = jsonObject.getString("telephone");
                                     String street = jsonObject.getString("street");
                                     String customer_id = jsonObject.getString("customer_id");
 
-                                    ChangeAddressListItem item = new ChangeAddressListItem(address_id, firstname, lastname, company, city, country_id, state, postcode, telephone, street, customer_id, false);
+                                    ChangeAddressListItem item = new ChangeAddressListItem(address_id, firstname, lastname, company, city, countryName, state, postcode, telephone, street, customer_id, false);
                                     rowItems.add(item);
                                 }
 

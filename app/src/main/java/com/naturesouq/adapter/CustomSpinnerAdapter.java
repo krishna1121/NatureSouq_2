@@ -13,18 +13,27 @@ import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
 import com.naturesouq.R;
+import com.naturesouq.common.CountriesList;
 
 import java.util.ArrayList;
 
 // Custom Adapter for Spinner
-public class CustomSpinnerAdapter extends ArrayAdapter<String> {
+public class CustomSpinnerAdapter extends ArrayAdapter<CountriesList> {
 
     private Context context1;
-    private ArrayList<String> data;
+    private ArrayList<CountriesList> data;
     public Resources res;
     LayoutInflater inflater;
 
-    public CustomSpinnerAdapter(Context context, ArrayList<String> objects) {
+    public ArrayList<CountriesList> getData() {
+        return data;
+    }
+
+    public void setData(ArrayList<CountriesList> data) {
+        this.data = data;
+    }
+
+    public CustomSpinnerAdapter(Context context, ArrayList<CountriesList> objects) {
         super(context, R.layout.spinner_row, objects);
 
         context1 = context;
@@ -51,7 +60,7 @@ public class CustomSpinnerAdapter extends ArrayAdapter<String> {
 
         TextView tvCategory = (TextView) row.findViewById(R.id.spinTxt);
 
-        tvCategory.setText(data.get(position).toString());
+        tvCategory.setText(data.get(position).getCountryName());
 
         return row;
     }

@@ -121,9 +121,8 @@ public class Cart extends Activity implements CartBaseAdapter.ViewClickListener 
                 shoppingcart_id = NatureSouqPrefrences.getShoppingcartId(this);
                 jsonObject.put("shoppingcart_id",shoppingcart_id);
                 jsonObject.put("apikey","naturesouq#123@apikey");
-
                 new CartTask(jsonObject, "cartProduct").executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR,CART_URL);
-            } catch (JSONException e) {
+            }catch (JSONException e){
                 e.printStackTrace();
             }
         }

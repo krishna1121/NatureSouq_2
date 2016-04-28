@@ -31,8 +31,8 @@ import java.util.Locale;
 /**
  * Created by SI_Android_Binit on 10/15/2015.
  */
-public class AddNewAddress extends Activity {
 
+public class AddNewAddress extends Activity {
         TextView title;
         Button addAddress;
         public static final int UPDATED_ADD_INTENT_CODE =  201 ;
@@ -40,18 +40,22 @@ public class AddNewAddress extends Activity {
        // final String CHANGE_ADDRESS_URL="http://dev.smartideaz.org/php_web_services/naturesouqWS/setCustomerCartAddress.php";
         final String CHANGE_ADDRESS_URL=Utility.baseURL+"addNewaddress.php";
         final String UPDATE_ADDRESS_URL=Utility.baseURL+"updateAddress.php";
-        String Street_Add,CITY,ZIP_CODE,STATE,Country_Code,PHONE_NUMBER,customer_id, value,address_id;
+        String Street_Add,CITY,ZIP_CODE,STATE,PHONE_NUMBER,customer_id, value,address_id;
         ProgressBar progressBar;
         Spinner country;
         static HomeDataProvider homeDataProvider;
         ChangeAddressListItem object;
         CustomSpinnerAdapter spinAdapter;
+        //ArrayList<CountriesList> countriesList ;
+        String country_name , country_id;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.add_new_addresss);
         progressBar =(ProgressBar)findViewById(R.id.progressBar);
+
+        //countriesList = getIntent().getParcelableArrayListExtra("countrieslist") ;
 
         getActionBar().setDisplayHomeAsUpEnabled(true);
         getActionBar().setDisplayShowHomeEnabled(false);
@@ -98,38 +102,21 @@ public class AddNewAddress extends Activity {
         if (!(object==null)){
             updateAddress();
         }
-
     }
 
     public void addCountrySpinner() {
-        final String DEFAULT_LOCAL = "United Arab Emirates";
-        Locale[] locales = Locale.getAvailableLocales();
-
-        ArrayList<String> list = new ArrayList<String>();
-        for (Locale locale : locales) {
-
-            String country = locale.getDisplayCountry();
-
-            if (country.trim().length()>0 && !list.contains(country)) {
-                list.add(country);
-            }
-        }
-
-        Collections.sort(list);
-
-        spinAdapter = new CustomSpinnerAdapter(getApplicationContext(), list);
-
+        spinAdapter = new CustomSpinnerAdapter(getApplicationContext(), NatureSouqPrefrences.countriesList);
         country.setAdapter(spinAdapter);
-        country.setSelection(spinAdapter.getPosition(DEFAULT_LOCAL));
+        country.setSelection(1);
         country.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
 
             @Override
             public void onItemSelected(AdapterView<?> adapter, View v, int position, long id) {
-                // On selecting a spinner item
-                String item = adapter.getItemAtPosition(position).toString();
-
-                // Showing selected spinner item
-                //   Toast.makeText(getApplicationContext(), "Selected  : " + item, Toast.LENGTH_SHORT).show();
+                CountriesList lisItem = spinAdapter.getData().get(position) ;
+                String shippingCharge = lisItem.getShippingCharge() ;
+                country_name = lisItem.getCountryName() ;
+                country_id = lisItem.getCountryCode() ;
+                NatureSouqPrefrences.setShippingCharge(getApplicationContext() , shippingCharge);
             }
 
             @Override
@@ -165,7 +152,6 @@ public class AddNewAddress extends Activity {
         CITY = city.getText().toString();
         ZIP_CODE = zipcode.getText().toString();
         STATE = state.getText().toString();
-        Country_Code = country.getSelectedItem().toString();
         PHONE_NUMBER = phoneNumber.getText().toString();
         customer_id = NatureSouqPrefrences.getCustomer_id(AddNewAddress.this);
 
@@ -196,6 +182,7 @@ public class AddNewAddress extends Activity {
             String shopingcartId=NatureSouqPrefrences.getShoppingcartId(AddNewAddress.this);
 
             if (!(object==null)){
+
                 jsonObject.put("addressId", object.getAddress_id());
                 jsonObject.put("company", "NatureSouq");
                 jsonObject.put("street", Street_Add);
@@ -203,11 +190,11 @@ public class AddNewAddress extends Activity {
                 jsonObject.put("region", STATE);
                 jsonObject.put("region_id", "2");
                 jsonObject.put("postcode", ZIP_CODE);
-                jsonObject.put("country_id", Country_Code);
+                jsonObject.put("country_id", country_id);
                 jsonObject.put("telephone", PHONE_NUMBER);
                 jsonObject.put("apikey", "naturesouq#123@apikey");
-
                 new ChangeAddTask(jsonObject, "updateAddress").execute(UPDATE_ADDRESS_URL);
+
             }else{
                 jsonObject.put("shoppingcart_id", shopingcartId);
                 jsonObject.put("customerId", customer_id);
@@ -217,7 +204,7 @@ public class AddNewAddress extends Activity {
                 jsonObject.put("region", STATE);
                 jsonObject.put("region_id", "2");
                 jsonObject.put("postcode", ZIP_CODE);
-                jsonObject.put("country_id", Country_Code);
+                jsonObject.put("country_id", country_id);
                 jsonObject.put("telephone", PHONE_NUMBER);
                 jsonObject.put("apikey", "naturesouq#123@apikey");
 
@@ -228,6 +215,36 @@ public class AddNewAddress extends Activity {
             e.printStackTrace();
         }
     }
+    }
+
+    public class AddNewTask extends AsyncTask<String , Void , String>{
+
+        JSONObject jobj ;
+
+        AddNewTask(JSONObject jobj){
+            this.jobj = jobj ;
+        }
+
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+        }
+
+        @Override
+        protected void onPostExecute(String s) {
+            super.onPostExecute(s);
+        }
+
+        @Override
+        protected String doInBackground(String... params) {
+            ConnectAsynchronously.connectAsynchronously(params[0],jobj);
+            return null;
+        }
+
+        @Override
+        protected void onProgressUpdate(Void... values) {
+            super.onProgressUpdate(values);
+        }
     }
 
     public void updateAddress(){
@@ -253,9 +270,21 @@ public class AddNewAddress extends Activity {
             state.setText("");
         }
         if (!TextUtils.isEmpty(object.getCountry_id())) {
-            country.setSelection(spinAdapter.getPosition(object.getCountry_id()));
+            int pos = 0 ;
+            for(CountriesList countryItem : NatureSouqPrefrences.countriesList){
+                pos++ ;
+                if(countryItem.getCountryCode().equals(object.getCountry_id())){
+                    country.setSelection(pos);
+                }
+            }
         } else {
-            country.setSelection(spinAdapter.getPosition("United Arab Emirates"));
+            int pos = 0 ;
+            for(CountriesList countryItem : NatureSouqPrefrences.countriesList){
+                pos++ ;
+                if(countryItem.getCountryName().equals("United Arab Emirates")){
+                    country.setSelection(pos);
+                }
+            }
         }
         if (!TextUtils.isEmpty(object.getTelephone())) {
             phoneNumber.setText(object.getTelephone());
@@ -300,7 +329,7 @@ public class AddNewAddress extends Activity {
                     if (taskIdentifier.equals("updateAddress")){
                         Toast.makeText(getApplicationContext(),message,Toast.LENGTH_LONG).show();
                         Intent updatedAddIntent = new Intent();
-                        ChangeAddressListItem item = new ChangeAddressListItem(object.getAddress_id(), object.getFirstname(), object.getLastname(), object.getCompany(), CITY, Country_Code, STATE, ZIP_CODE, PHONE_NUMBER, Street_Add, object.getCustomer_id(), false);
+                        ChangeAddressListItem item = new ChangeAddressListItem(object.getAddress_id(), object.getFirstname(), object.getLastname(), object.getCompany(), CITY, country_id, STATE, ZIP_CODE, PHONE_NUMBER, Street_Add, object.getCustomer_id(), false);
                         updatedAddIntent.putExtra("updatedAddress",item);
                         setResult(UPDATED_ADD_INTENT_CODE ,updatedAddIntent);
                         finish();
@@ -320,8 +349,15 @@ public class AddNewAddress extends Activity {
                         String city = jsonObject.getString("city");
                         String company = jsonObject.getString("company");
                         String country_id = jsonObject.getString("country_id");
-                        // String firstname = jsonObject.getString("firstname");
-                        //  String lastname = jsonObject.getString("lastname");
+
+                        String countryName = "";
+                        for(CountriesList listItem : NatureSouqPrefrences.countriesList) {
+                            if (listItem.getCountryCode().equals(country_id)) {
+                                countryName = listItem.getCountryName();
+                                break;
+                            }
+                        }
+
                         String postcode = jsonObject.getString("postcode");
                         String region = jsonObject.getString("region");
                         String region_id = jsonObject.getString("region_id");
@@ -334,8 +370,8 @@ public class AddNewAddress extends Activity {
                         NatureSouqPrefrences.setAddressId("address_id",AddNewAddress.this, address_id);
                         NatureSouqPrefrences.setUserContactNo(AddNewAddress.this,telephone);
 
-                      //  String Address_street = street+", "+city+"\n"+region+", "+country_id+", "+postcode+"\n"+telephone;
-                        addressdataItem=new AddressdataItem(address_id,street,city,postcode,region,country_id, telephone,totalAmount,shippingAmount,grandTotal);
+                        //String Address_street = street+", "+city+"\n"+region+", "+country_id+", "+postcode+"\n"+telephone;
+                        addressdataItem=new AddressdataItem(address_id,street,city,postcode,region,countryName, telephone,totalAmount,shippingAmount,grandTotal);
                         list.add(addressdataItem);
 
                     }
@@ -368,8 +404,6 @@ public class AddNewAddress extends Activity {
                                 if(ChangeAddress.Instance()!=null)
                                 ChangeAddress.Instance().finish();
                                 finish();
-
-
                             }else if (value.equalsIgnoreCase("fromAccountFragment")){
                                 MainActivity.getInstance().displayView(1, 1, "", "My Account");
                                 Intent forAccount = new Intent();
@@ -377,7 +411,6 @@ public class AddNewAddress extends Activity {
                                 forAccount.putExtra("PHONE_NUMBER",PhoneNumber);
                                 forAccount.putExtra("from", "AddNewAddress");
                                 setResult(16, forAccount);
-//                            //startActivity(forAccount);
                                 finish();
                             }
                         }else{
@@ -391,8 +424,6 @@ public class AddNewAddress extends Activity {
                             ChangeAddress.Instance().finish();
                             finish();
                         }
-
-                        //NatureSouqPrefrences.setAddressId(AddNewAddress.this, address_id);
                     }
                 }else{
                     Toast.makeText(getApplicationContext(),message,Toast.LENGTH_LONG).show();
