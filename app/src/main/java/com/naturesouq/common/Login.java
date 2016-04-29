@@ -26,7 +26,6 @@ import com.facebook.login.LoginResult;
 import com.facebook.login.widget.LoginButton;
 import com.naturesouq.R;
 import com.naturesouq.model.HomeDataProvider;
-
 import org.json.JSONArray;
 import org.json.JSONObject;
 
@@ -48,8 +47,6 @@ public class Login extends Activity {
     private String shipingAmount;
     private String subTotalAmount;
     static HomeDataProvider homeDataProvider;
-
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

@@ -21,6 +21,7 @@ import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
+
 import com.naturesouq.R;
 import com.naturesouq.adapter.MyHorizontalAdapter;
 import com.naturesouq.adapter.MyVerticalAdapter;
@@ -37,9 +38,11 @@ import com.naturesouq.common.VerticalSpaceItemDecoration;
 import com.naturesouq.model.HomeDataProvider;
 import com.naturesouq.model.HomeProductsItem;
 import com.squareup.picasso.Picasso;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+
 import java.util.ArrayList;
 
 /**
@@ -48,7 +51,7 @@ import java.util.ArrayList;
 public class HomeFragment extends Fragment implements ViewClickListener {
 
     private static final String LOG_TAG = HomeFragment.class.getSimpleName();
-    final String SLIDER_IMAGES = Utility.baseURL+"slider.php";
+    final String SLIDER_IMAGES = Utility.baseURL + "slider.php";
     ProgressBar progressBar;
     int[] anim_circle;
     ImageView circleAnimImageView;
@@ -62,11 +65,11 @@ public class HomeFragment extends Fragment implements ViewClickListener {
     private RecyclerView.LayoutManager mLayoutManager;
     private RecyclerView myRecyclerView;
     private ArrayList<HomeProductsItem> data;
-    String product_id = "", type = "", set = "", sku = "", position = "", rating = "", review = "", price = "", name = "", description = "", short_description = "", image_url = "", SmallImage = "", Thumbnail = "",specification_price,specification_sku;
+    String status = "" ,product_id = "", type = "", set = "", sku = "", position = "", rating = "", review = "", price = "", name = "", description = "", short_description = "", image_url = "", SmallImage = "", Thumbnail = "", specification_price, specification_sku;
     public static String categoryName[], category_id[];
     TextView DealoftheDay;
     JSONArray homeSpecificationArray, homeSpecificationKeyArray, homeGallery;
-    public static HomeDataProvider provider1,provider2,provider3;
+    public static HomeDataProvider provider1, provider2, provider3;
 
 
     @Override
@@ -77,10 +80,10 @@ public class HomeFragment extends Fragment implements ViewClickListener {
 
         //Add Recycler Item for New Products
         myRecyclerView = (RecyclerView) view.findViewById(R.id.my_recycler_view);
-        DealoftheDay = (TextView)view.findViewById(R.id.DealoftheDayView);
+        DealoftheDay = (TextView) view.findViewById(R.id.DealoftheDayView);
 
-        int duration = 1000 ;
-        mLayoutManager = new ScrollingLinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false,duration);
+        int duration = 1000;
+        mLayoutManager = new ScrollingLinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false, duration);
         myRecyclerView.addItemDecoration(new VerticalSpaceItemDecoration(8));
         myRecyclerView.setLayoutManager(mLayoutManager);
         myRecyclerView.setNestedScrollingEnabled(false);
@@ -95,9 +98,9 @@ public class HomeFragment extends Fragment implements ViewClickListener {
         DealoftheDay.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent data=new Intent(getActivity(),CategoryProducts.class);
+                Intent data = new Intent(getActivity(), CategoryProducts.class);
                 data.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
-                data.putExtra("data","Deals of the day");
+                data.putExtra("data", "Deals of the day");
                 startActivity(data);
             }
         });
@@ -106,19 +109,20 @@ public class HomeFragment extends Fragment implements ViewClickListener {
         try {
 
             ArrayList<ArrayList<HomeProductsItem>> dataTop = new ArrayList<ArrayList<HomeProductsItem>>();
-            JSONArray jsonArray_home=MainActivity.homeDataProvider.getHomeData();
+            JSONArray jsonArray_home = MainActivity.homeDataProvider.getHomeData();
             categoryName = new String[jsonArray_home.length()];
             category_id = new String[jsonArray_home.length()];
-           // data = new ArrayList<HomeProductsItem>();
+            // data = new ArrayList<HomeProductsItem>();
             for (int home_catagory = 0; home_catagory < jsonArray_home.length(); home_catagory++) {
                 data = new ArrayList<HomeProductsItem>();
-            JSONArray jsonArray_catagory = jsonArray_home.getJSONArray(home_catagory);
-                HomeProductsItem homeProductsItem=null;
+                JSONArray jsonArray_catagory = jsonArray_home.getJSONArray(home_catagory);
+                HomeProductsItem homeProductsItem = null;
                 // newProductProductsItemList = new ArrayList<HomeProductsItem>();
                 for (int catagory = 0; catagory < jsonArray_catagory.length(); catagory++) {
 
                     JSONObject catagoryObject = jsonArray_catagory.getJSONObject(catagory);
                     if ((catagory != (jsonArray_catagory.length() - 1))) {
+                        //status = catagoryObject.getString("status") ;
                         product_id = catagoryObject.getString("product_id");
                         type = catagoryObject.getString("type");
                         set = catagoryObject.getString("set");
@@ -135,29 +139,32 @@ public class HomeFragment extends Fragment implements ViewClickListener {
                         Thumbnail = catagoryObject.getString("Thumbnail");
 
                         homeGallery = catagoryObject.getJSONArray("gallery");
-                        homeSpecificationKeyArray=catagoryObject.getJSONArray("specificationKey");
-                        homeSpecificationArray=catagoryObject.getJSONArray("specification");
+                        homeSpecificationKeyArray = catagoryObject.getJSONArray("specificationKey");
+                        homeSpecificationArray = catagoryObject.getJSONArray("specification");
 
                     }
-                     if (catagory == (jsonArray_catagory.length() - 1)) {
+                    if (catagory == (jsonArray_catagory.length() - 1)) {
                         categoryName[home_catagory] = catagoryObject.getString("CategoryName");
                         category_id[home_catagory] = catagoryObject.getString("category_id");
-                      }
-                    homeProductsItem = new HomeProductsItem(product_id, type, set, sku, position, rating, review, price, name, description, short_description, image_url, SmallImage, Thumbnail, "", "",homeGallery,homeSpecificationKeyArray,homeSpecificationArray);
-                    data.add(homeProductsItem);
-                    }
-                //
-                    dataTop.add(data);
-                    verticalAdapter.add(dataTop);
-                    verticalAdapter.setViewClickListener(HomeFragment.this);
-                    verticalAdapter.notifyDataSetChanged();
-                     myRecyclerView.setAdapter(verticalAdapter);
                     }
 
-                } catch (Exception e) {
-                  e.printStackTrace();
-            Toast.makeText(getActivity(),""+e,Toast.LENGTH_LONG).show();
+                    homeProductsItem = new HomeProductsItem(product_id, type, set, sku, position, rating, review, price, name, description, short_description, image_url, SmallImage, Thumbnail, "", "", homeGallery, homeSpecificationKeyArray, homeSpecificationArray);
+
+                    //if(status.equals("1"))
+                    data.add(homeProductsItem);
                 }
+                //
+                dataTop.add(data);
+                verticalAdapter.add(dataTop);
+                verticalAdapter.setViewClickListener(HomeFragment.this);
+                verticalAdapter.notifyDataSetChanged();
+                myRecyclerView.setAdapter(verticalAdapter);
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            Toast.makeText(getActivity(), "" + e, Toast.LENGTH_LONG).show();
+        }
 
         circleAnimImageView = (ImageView) view.findViewById(R.id.circleAnim);
         // Locate the ViewPager in viewpager_main.xml
@@ -166,15 +173,15 @@ public class HomeFragment extends Fragment implements ViewClickListener {
         boolean networkStatus = new DialogBox(getActivity()).checkInternetConnection();
         if (networkStatus) {
 
-           // homeRecyclerProduct();
+            // homeRecyclerProduct();
             //call webservice to load slider images.
             JSONObject jsonObject = new JSONObject();
             try {
                 jsonObject.put("apikey", "naturesouq#123@apikey");
-                new HomePagerTask(jsonObject, "setSliderImage").executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR,SLIDER_IMAGES);
+                new HomePagerTask(jsonObject, "setSliderImage").executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR, SLIDER_IMAGES);
             } catch (JSONException e) {
                 e.printStackTrace();
-                Toast.makeText(getActivity(),""+e,Toast.LENGTH_LONG).show();
+                Toast.makeText(getActivity(), "" + e, Toast.LENGTH_LONG).show();
             }
         }
 
@@ -205,35 +212,35 @@ public class HomeFragment extends Fragment implements ViewClickListener {
         Intent detailPage = new Intent(getActivity(), CategoryProducts.class);
         detailPage.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
         detailPage.putExtra("feedItemHomeFragment", feedItem);
-        detailPage.putExtra("categoryId",categoryId);
-        detailPage.putExtra("cat",category);
+        detailPage.putExtra("categoryId", categoryId);
+        detailPage.putExtra("cat", category);
         startActivity(detailPage);
     }
 
     @Override
     public void onItemClick(int position, HomeProductsItem item) {
         Log.i(LOG_TAG, "onProductClicked, " + position + " : " + item.getName() + "," + item.getCategoryName());
-            Intent detailPage = new Intent(getActivity(), ProductDetail.class);
-            detailPage.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
-            detailPage.putExtra("feedItemHomeFragment", item);
-            detailPage.putExtra("GridViewToDetail", "homeFragment");
-            detailPage.putExtra("product_id", item.getProduct_id());
-            detailPage.putExtra("categoryName", item.getCategoryName());
-        provider1=new HomeDataProvider(item.getHomeGallery());
+        Intent detailPage = new Intent(getActivity(), ProductDetail.class);
+        detailPage.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
+        detailPage.putExtra("feedItemHomeFragment", item);
+        detailPage.putExtra("GridViewToDetail", "homeFragment");
+        detailPage.putExtra("product_id", item.getProduct_id());
+        detailPage.putExtra("categoryName", item.getCategoryName());
+        provider1 = new HomeDataProvider(item.getHomeGallery());
         provider1.setProductGallery(item.getHomeGallery());
-        provider2=new HomeDataProvider(item.getHomeSpecificationKey());
+        provider2 = new HomeDataProvider(item.getHomeSpecificationKey());
         provider2.setProductSpecificationKey(item.getHomeSpecificationKey());
-        provider3=new HomeDataProvider(item.getHomeSpecification());
+        provider3 = new HomeDataProvider(item.getHomeSpecification());
         provider3.setProductSpecification(item.getHomeSpecification());
-            startActivity(detailPage);
+        startActivity(detailPage);
 
     }
 
     @Override
     public void onResume() {
         super.onResume();
-        String counter= NatureSouqPrefrences.getCartCounter(getActivity());
-        if(!TextUtils.isEmpty(counter)){
+        String counter = NatureSouqPrefrences.getCartCounter(getActivity());
+        if (!TextUtils.isEmpty(counter)) {
             updateHotCount(Integer.parseInt(counter));
         }
     }
@@ -276,14 +283,14 @@ public class HomeFragment extends Fragment implements ViewClickListener {
                     if (taskIdentifier.equals("setSliderImage")) {
                         JSONArray jsonArray = jsonResponse.getJSONArray("data");
                         //Add ViewPager On hOme page
-                        String id[]=new String[jsonArray.length()];
-                        String content[]=new String[jsonArray.length()];
+                        String id[] = new String[jsonArray.length()];
+                        String content[] = new String[jsonArray.length()];
                         for (int slider = 0; slider < jsonArray.length(); slider++) {
 
                             JSONObject jsonObject = jsonArray.getJSONObject(slider);
                             String sliderImage = jsonObject.getString("image_url");
                             id[slider] = jsonObject.getString("id");
-                            content[slider]=jsonObject.getString("content");
+                            content[slider] = jsonObject.getString("content");
 
                             if (slider == 0) {
                                 slider1 = sliderImage;
@@ -297,7 +304,7 @@ public class HomeFragment extends Fragment implements ViewClickListener {
                                 anim_circle = new int[]{R.drawable.circle1, R.drawable.circle2, R.drawable.circle3};
 
                                 // Pass results to ViewPagerAdapter Class
-                                ImageAdapter adapter = new ImageAdapter(getActivity(), backgroundImage,id,content);
+                                ImageAdapter adapter = new ImageAdapter(getActivity(), backgroundImage, id, content);
                                 // Binds the Adapter to the ViewPager
                                 viewPager.setAdapter(adapter);
                                 viewPager.setOnPageChangeListener(adapter);
@@ -340,10 +347,10 @@ public class HomeFragment extends Fragment implements ViewClickListener {
                                     Thumbnail = catagoryObject.getString("Thumbnail");
 
                                     homeGallery = catagoryObject.getJSONArray("gallery");
-                                    homeSpecificationKeyArray=catagoryObject.getJSONArray("specificationKey");
-                                    homeSpecificationArray=catagoryObject.getJSONArray("specification");
+                                    homeSpecificationKeyArray = catagoryObject.getJSONArray("specificationKey");
+                                    homeSpecificationArray = catagoryObject.getJSONArray("specification");
 
-                                    HomeProductsItem homeProductsItem = new HomeProductsItem(product_id, type, set, sku, position, rating, review, price, name, description, short_description, image_url, SmallImage, Thumbnail,"", "",homeGallery,homeSpecificationKeyArray,homeSpecificationArray);
+                                    HomeProductsItem homeProductsItem = new HomeProductsItem(product_id, type, set, sku, position, rating, review, price, name, description, short_description, image_url, SmallImage, Thumbnail, "", "", homeGallery, homeSpecificationKeyArray, homeSpecificationArray);
                                     data.add(homeProductsItem);
                                 }
                                 if (catagory == (jsonArray_catagory.length() - 1)) {
@@ -351,14 +358,14 @@ public class HomeFragment extends Fragment implements ViewClickListener {
                                     category_id[home_catagory] = catagoryObject.getString("category_id");
 
                                 }
-                                HomeProductsItem productsItem=new HomeProductsItem();
+                                HomeProductsItem productsItem = new HomeProductsItem();
 
                             }
                             //
-                                dataTop.add(data);
-                                verticalAdapter.add(dataTop);
-                                verticalAdapter.setViewClickListener(HomeFragment.this);
-                                verticalAdapter.notifyDataSetChanged();
+                            dataTop.add(data);
+                            verticalAdapter.add(dataTop);
+                            verticalAdapter.setViewClickListener(HomeFragment.this);
+                            verticalAdapter.notifyDataSetChanged();
                         }
                     }
                     if (progressBar != null)
@@ -377,7 +384,7 @@ public class HomeFragment extends Fragment implements ViewClickListener {
                     progressBar.setVisibility(View.GONE);
 
                 e.printStackTrace();
-                Toast.makeText(getActivity(), ""+e, Toast.LENGTH_LONG).show();
+                Toast.makeText(getActivity(), "" + e, Toast.LENGTH_LONG).show();
             }
             super.onPostExecute(result);
         }
@@ -390,11 +397,11 @@ public class HomeFragment extends Fragment implements ViewClickListener {
         String contentTitle[];
         ImageView imageView;
 
-        ImageAdapter(Context context, String[] urlArr,String[] id,String contentTitle[]) {
+        ImageAdapter(Context context, String[] urlArr, String[] id, String contentTitle[]) {
             this.context = context;
             this.urlArray = new String[urlArr.length];
-            this.id=new String[id.length];
-            this.contentTitle=new String[contentTitle.length];
+            this.id = new String[id.length];
+            this.contentTitle = new String[contentTitle.length];
 
             for (int arrlen = 0; arrlen < this.urlArray.length; arrlen++) {
                 this.urlArray[arrlen] = urlArr[arrlen];
@@ -420,12 +427,12 @@ public class HomeFragment extends Fragment implements ViewClickListener {
             imageView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                   // Toast.makeText(getActivity(),""+id[position],Toast.LENGTH_LONG).show();
+                    // Toast.makeText(getActivity(),""+id[position],Toast.LENGTH_LONG).show();
 
-                    Intent data=new Intent(getActivity(),CategoryProducts.class);
+                    Intent data = new Intent(getActivity(), CategoryProducts.class);
                     data.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
-                    data.putExtra("categoryId",id[position]);
-                    data.putExtra("cat",contentTitle[position]);
+                    data.putExtra("categoryId", id[position]);
+                    data.putExtra("cat", contentTitle[position]);
                     startActivity(data);
                 }
             });
@@ -512,21 +519,21 @@ public class HomeFragment extends Fragment implements ViewClickListener {
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         try {
             super.onActivityResult(requestCode, resultCode, data);
-            if (data!=null) {
+            if (data != null) {
                 if (requestCode == 12) {
                     String requiredValue = data.getStringExtra("updateCount");
                     String MY_RATING = data.getStringExtra("MY_RATING");
                     String MY_FAVOURITE = data.getStringExtra("MY_FAVOURITE");
 
-                    Intent i =new Intent();
+                    Intent i = new Intent();
 
-                    if (!TextUtils.isEmpty(requiredValue)){
+                    if (!TextUtils.isEmpty(requiredValue)) {
                         // Toast.makeText(getActivity(),requiredValue,Toast.LENGTH_LONG).show();
                         // countTextView.setText(Integer.parseInt(requiredValue));
                         updateHotCount(Integer.parseInt(requiredValue));
                         i.putExtra("updateCount", requiredValue);
                     }
-                    if (!TextUtils.isEmpty(MY_RATING) || !TextUtils.isEmpty(MY_FAVOURITE)){
+                    if (!TextUtils.isEmpty(MY_RATING) || !TextUtils.isEmpty(MY_FAVOURITE)) {
                         i.putExtra("MY_RATING", MY_RATING);
                         i.putExtra("MY_FAVOURITE", MY_FAVOURITE);
                     }

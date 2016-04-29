@@ -166,7 +166,6 @@ public class CheckOut extends OPActivity {
                                 price = (String) totalPrice.getText();
                                 int priceToPassToPayfort = Integer.parseInt(price) * 100;
                                 payData.setAmount(priceToPassToPayfort);
-                                payData.setAmount(priceToPassToPayfort * 100);
                             }
 
                             payData.setCurrency("AED");
@@ -192,7 +191,12 @@ public class CheckOut extends OPActivity {
                             String orderIdCod = object.getString("order_id");
 
                             if (!TextUtils.isEmpty(orderIdCod)) {
-                                //Intent cashOnDelIntent = new Intent(this, OrderDetail.class);
+
+                                //Make shopping cart id empty .
+                                NatureSouqPrefrences.setShoppingcartId(CheckOut.this, "");
+                                //Make cart counter empty .
+                                NatureSouqPrefrences.setCartCounter(CheckOut.this, "");
+
                                 Intent cashOnDelIntent = new Intent(CheckOut.this, OrderStatus.class);
                                 cashOnDelIntent.putExtra("orderId", orderIdCod);
                                 startActivityForResult(cashOnDelIntent, 9);
@@ -200,7 +204,6 @@ public class CheckOut extends OPActivity {
                             } else {
                                 Toast.makeText(getApplicationContext(), "Comminication failed with Server, Please do checkout again !", Toast.LENGTH_SHORT).show();
                             }
-
                         }
                         else if (value1.equalsIgnoreCase("OrderSuccess")) {
                             try {
@@ -407,7 +410,7 @@ public class CheckOut extends OPActivity {
             jsonObject.put("apikey", "naturesouq#123@apikey");
             checkOutAddressTask = new CheckOutAddressTask(jsonObject, "OrderSuccess");
             checkOutAddressTask.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR, generateOrderURL);
-        } catch (JSONException e) {
+        }catch (JSONException e) {
             e.printStackTrace();
         }
     }

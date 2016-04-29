@@ -105,5 +105,17 @@
     <string name="message">Message</string>
     <string name="cancel">Cancel</string>
     <string name="ok">Ok</string>
+    <string name="myfavorite">MY FAVORITE</string>
+    <string name="logout">LOG OUT</string>
+    <string name="myreviews">MY REVIEWS</string>
+    <string name="viewall">VIEW ALL</string>
+    <string name="myorders">MY Orders</string>
+    <string name="changeaddress">CHANGE ADDRESS</string>
+    <string name="address">Address</string>
+    <string name="changeyourpassowrd">CHANGE YOUR PASSWORD</string>
+    <string name="update">UPDATE</string>
+    <string name="mobilenumber">Mobile Number</string>
+    <string name="lastname_hint">Last Name</string>
+    <string name="firstname_hint">First Name</string>
 
 </resources>
