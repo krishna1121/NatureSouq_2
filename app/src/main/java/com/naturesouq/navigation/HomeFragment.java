@@ -59,7 +59,6 @@ public class HomeFragment extends Fragment implements ViewClickListener {
     static int cartitemcount;
     private TextView countTextView = null;
     ViewPager viewPager;
-
     private MyVerticalAdapter verticalAdapter;
     private MyHorizontalAdapter horizontalAdapter;
     private RecyclerView.LayoutManager mLayoutManager;
@@ -91,7 +90,6 @@ public class HomeFragment extends Fragment implements ViewClickListener {
         horizontalAdapter = new MyHorizontalAdapter(getActivity(), data, new MyHorizontalAdapter.ViewClickListener() {
             @Override
             public void onImageClicked(int position, String item) {
-
             }
         });
 
@@ -105,19 +103,16 @@ public class HomeFragment extends Fragment implements ViewClickListener {
             }
         });
 
-
         try {
-
             ArrayList<ArrayList<HomeProductsItem>> dataTop = new ArrayList<ArrayList<HomeProductsItem>>();
             JSONArray jsonArray_home = MainActivity.homeDataProvider.getHomeData();
             categoryName = new String[jsonArray_home.length()];
             category_id = new String[jsonArray_home.length()];
-            // data = new ArrayList<HomeProductsItem>();
+
             for (int home_catagory = 0; home_catagory < jsonArray_home.length(); home_catagory++) {
                 data = new ArrayList<HomeProductsItem>();
                 JSONArray jsonArray_catagory = jsonArray_home.getJSONArray(home_catagory);
-                HomeProductsItem homeProductsItem = null;
-                // newProductProductsItemList = new ArrayList<HomeProductsItem>();
+
                 for (int catagory = 0; catagory < jsonArray_catagory.length(); catagory++) {
 
                     JSONObject catagoryObject = jsonArray_catagory.getJSONObject(catagory);
@@ -142,18 +137,16 @@ public class HomeFragment extends Fragment implements ViewClickListener {
                         homeSpecificationKeyArray = catagoryObject.getJSONArray("specificationKey");
                         homeSpecificationArray = catagoryObject.getJSONArray("specification");
 
+                        HomeProductsItem homeProductsItem = new HomeProductsItem(product_id, type, set, sku, position, rating, review, price, name, description, short_description, image_url, SmallImage, Thumbnail, "", "", homeGallery, homeSpecificationKeyArray, homeSpecificationArray);
+                        data.add(homeProductsItem);
+
                     }
                     if (catagory == (jsonArray_catagory.length() - 1)) {
                         categoryName[home_catagory] = catagoryObject.getString("CategoryName");
                         category_id[home_catagory] = catagoryObject.getString("category_id");
                     }
-
-                    homeProductsItem = new HomeProductsItem(product_id, type, set, sku, position, rating, review, price, name, description, short_description, image_url, SmallImage, Thumbnail, "", "", homeGallery, homeSpecificationKeyArray, homeSpecificationArray);
-
-                    //if(status.equals("1"))
-                    data.add(homeProductsItem);
                 }
-                //
+
                 dataTop.add(data);
                 verticalAdapter.add(dataTop);
                 verticalAdapter.setViewClickListener(HomeFragment.this);

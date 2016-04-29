@@ -30,7 +30,6 @@ public class MyHorizontalAdapter extends  RecyclerView.Adapter<MyHorizontalAdapt
         this.mViewClickListener = viewClickListener;
     }
 
-
     @Override
     public CustomViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
         View view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.horizontal_item, null);

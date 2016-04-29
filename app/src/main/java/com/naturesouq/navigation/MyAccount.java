@@ -151,8 +151,11 @@ public class MyAccount extends Fragment implements MyAccountOrderAdapter.ViewCli
                             edt.commit();
 
                             //Open sign in Activity
-                            Intent intent = new Intent(activity , Login.class);
-                            startActivity(intent);
+                            Intent login = new Intent(getActivity(), Login.class);
+                            login.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
+                            login.putExtra("ComingFrom", "MyAccount");
+                            //login.putExtra("shoppingcart_id", "");
+                            startActivityForResult(login, 15);
 
                             //Open Home Frament
                             MainActivity.getInstance().displayView(0, 0, "", "");

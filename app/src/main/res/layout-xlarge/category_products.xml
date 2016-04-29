@@ -71,7 +71,7 @@
             android:layout_height="match_parent"
             android:orientation="horizontal"
             android:padding="26dp"
-            android:background="@color/backgroundColor">
+            android:background="@color/productlistbackground">
 
             <android.support.v7.widget.RecyclerView
                 android:id="@+id/grid"

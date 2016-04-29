@@ -327,19 +327,21 @@ public class CategoryProducts extends Activity {
                                         @Override
                                         public void onItemClick(View view, int position) {
                                             // do whatever
-                                            CategoryProductsItem feedItem = gridArray.get(position);
-                                            Intent detailIntent = new Intent(CategoryProducts.this, ProductDetail.class);
-                                            detailIntent.putExtra("GridViewToDetail", "particularCategory");
-                                            detailIntent.putExtra("feedItemCategoryDetail", feedItem);
-                                            detailIntent.putExtra("product_id", feedItem.getProduct_id());
-                                            detailIntent.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
-                                            HomeFragment.provider1 = new HomeDataProvider(feedItem.getHomeGallery());
-                                            HomeFragment.provider1.setProductGallery(feedItem.getHomeGallery());
-                                            HomeFragment.provider2 = new HomeDataProvider(feedItem.getHomeSpecificationKey());
-                                            HomeFragment.provider2.setProductSpecificationKey(feedItem.getHomeSpecificationKey());
-                                            HomeFragment.provider3 = new HomeDataProvider(feedItem.getHomeSpecification());
-                                            HomeFragment.provider3.setProductSpecification(feedItem.getHomeSpecification());
-                                            startActivityForResult(detailIntent, 12);
+                                            if(gridArray != null && gridArray.size()>0){
+                                                CategoryProductsItem feedItem = gridArray.get(position);
+                                                Intent detailIntent = new Intent(CategoryProducts.this, ProductDetail.class);
+                                                detailIntent.putExtra("GridViewToDetail", "particularCategory");
+                                                detailIntent.putExtra("feedItemCategoryDetail", feedItem);
+                                                detailIntent.putExtra("product_id", feedItem.getProduct_id());
+                                                detailIntent.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
+                                                HomeFragment.provider1 = new HomeDataProvider(feedItem.getHomeGallery());
+                                                HomeFragment.provider1.setProductGallery(feedItem.getHomeGallery());
+                                                HomeFragment.provider2 = new HomeDataProvider(feedItem.getHomeSpecificationKey());
+                                                HomeFragment.provider2.setProductSpecificationKey(feedItem.getHomeSpecificationKey());
+                                                HomeFragment.provider3 = new HomeDataProvider(feedItem.getHomeSpecification());
+                                                HomeFragment.provider3.setProductSpecification(feedItem.getHomeSpecification());
+                                                startActivityForResult(detailIntent, 12);
+                                            }
                                         }
                                     })
                             );
@@ -350,6 +352,8 @@ public class CategoryProducts extends Activity {
                                 dealplaceholder.setImageResource(R.drawable.deal_placeholder);
                             } else {
                                 //No Product Placeholder
+                                adapter.setBestSellerProductsItems(gridArray);
+                                adapter.notifyDataSetChanged();
                                 dealplaceholder.setVisibility(View.VISIBLE);
                                 dealplaceholder.setImageResource(R.drawable.noproduct_placeholder);
                             }
