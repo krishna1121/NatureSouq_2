@@ -2,6 +2,7 @@ package com.naturesouq.common;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.PorterDuff;
 import android.graphics.Typeface;
 import android.graphics.drawable.Drawable;
 import android.os.AsyncTask;
@@ -36,12 +37,15 @@ public class OrderStatus extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        //setContentView(R.layout.order_status);
         setContentView(R.layout.cash_on_delivery);
 
         getActionBar().setDisplayHomeAsUpEnabled(false);
         getActionBar().setDisplayShowHomeEnabled(false);
-        getActionBar().setHomeButtonEnabled(true);
+        getActionBar().setHomeButtonEnabled(false);
+
+        /*final Drawable upArrow = getResources().getDrawable(R.drawable.abc_ic_ab_back_mtrl_am_alpha);
+        upArrow.setColorFilter(getResources().getColor(R.color.holo_dark_green), PorterDuff.Mode.SRC_ATOP);
+        getActionBar().setHomeAsUpIndicator(upArrow);*/
         //getActionBar().setTitle("Order Status");
 
         //msg1 = (TextView)findViewById(R.id.message_str);
@@ -84,6 +88,8 @@ public class OrderStatus extends Activity {
         }
 
     }
+
+
 
 
     private class CashOnDeliveryTask extends AsyncTask<String, Void, String> {
@@ -201,9 +207,9 @@ public class OrderStatus extends Activity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        if(item.getItemId() == android.R.id.home){
+       /* if(item.getItemId() == android.R.id.home){
             finish();
-        }
+        }*/
         return super.onOptionsItemSelected(item);
     }
 

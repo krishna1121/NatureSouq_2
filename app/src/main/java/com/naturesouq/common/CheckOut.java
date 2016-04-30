@@ -410,7 +410,7 @@ public class CheckOut extends OPActivity {
             jsonObject.put("apikey", "naturesouq#123@apikey");
             checkOutAddressTask = new CheckOutAddressTask(jsonObject, "OrderSuccess");
             checkOutAddressTask.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR, generateOrderURL);
-        }catch (JSONException e) {
+        }catch (JSONException e){
             e.printStackTrace();
         }
     }
@@ -424,7 +424,6 @@ public class CheckOut extends OPActivity {
     protected void onResultCancel() {
         Toast.makeText(getApplicationContext(), " Result canceled ", Toast.LENGTH_LONG).show();
     }
-
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {

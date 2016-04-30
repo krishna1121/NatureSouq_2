@@ -11,6 +11,7 @@ import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,7 +20,6 @@ import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import com.naturesouq.R;
 import com.naturesouq.adapter.CategoryProductsBaseAdapter;
 import com.naturesouq.common.ConnectAsynchronously;
@@ -31,11 +31,9 @@ import com.naturesouq.common.Utility;
 import com.naturesouq.common.VerticalSpaceItemDecoration;
 import com.naturesouq.model.CategoryProductsItem;
 import com.naturesouq.model.HomeDataProvider;
-
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.LinkedList;
@@ -43,6 +41,7 @@ import java.util.LinkedList;
 /**
  * Created by SI-Andriod on 17-Oct-15.
  */
+
 public class ChildFragment extends Fragment {
     private static final String CHILD_CATEGORY_URL = Utility.baseURL + "categoryProductList.php";
     private static final String PRODUCT_FILTER_URL = Utility.baseURL + "gfilter.php";
@@ -259,6 +258,7 @@ public class ChildFragment extends Fragment {
                 if (status.equals("1")) {
 
                     gridArray.clear();
+                    dealplaceholder.setVisibility(View.INVISIBLE);
 
                     JSONArray jsonArray = jsonResponse.getJSONArray("data");
                     //JSONArray jsonArray = new JSONArray();
@@ -302,25 +302,28 @@ public class ChildFragment extends Fragment {
                                     @Override
                                     public void onItemClick(View view, int position) {
                                         // do whatever
-                                        CategoryProductsItem feedItem = gridArray.get(position);
-                                        Intent detailIntent = new Intent(getActivity(), ProductDetail.class);
-                                        detailIntent.putExtra("GridViewToDetail", "particularCategory");
-                                        detailIntent.putExtra("feedItemCategoryDetail", feedItem);
-                                        detailIntent.putExtra("product_id", feedItem.getProduct_id());
-                                        detailIntent.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
-                                        HomeFragment.provider1 = new HomeDataProvider(feedItem.getHomeGallery());
-                                        HomeFragment.provider1.setProductGallery(feedItem.getHomeGallery());
-                                        HomeFragment.provider2 = new HomeDataProvider(feedItem.getHomeSpecificationKey());
-                                        HomeFragment.provider2.setProductSpecificationKey(feedItem.getHomeSpecificationKey());
-                                        HomeFragment.provider3 = new HomeDataProvider(feedItem.getHomeSpecification());
-                                        HomeFragment.provider3.setProductSpecification(feedItem.getHomeSpecification());
-                                        startActivityForResult(detailIntent, 12);
-                                        //Toast.makeText(getApplicationContext(), feedItem.getName(), Toast.LENGTH_SHORT).show();
+                                        if(gridArray != null && gridArray.size()>0){
+                                            CategoryProductsItem feedItem = gridArray.get(position);
+                                            Intent detailIntent = new Intent(getActivity(), ProductDetail.class);
+                                            detailIntent.putExtra("GridViewToDetail", "particularCategory");
+                                            detailIntent.putExtra("feedItemCategoryDetail", feedItem);
+                                            detailIntent.putExtra("product_id", feedItem.getProduct_id());
+                                            detailIntent.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
+                                            HomeFragment.provider1 = new HomeDataProvider(feedItem.getHomeGallery());
+                                            HomeFragment.provider1.setProductGallery(feedItem.getHomeGallery());
+                                            HomeFragment.provider2 = new HomeDataProvider(feedItem.getHomeSpecificationKey());
+                                            HomeFragment.provider2.setProductSpecificationKey(feedItem.getHomeSpecificationKey());
+                                            HomeFragment.provider3 = new HomeDataProvider(feedItem.getHomeSpecification());
+                                            HomeFragment.provider3.setProductSpecification(feedItem.getHomeSpecification());
+                                            startActivityForResult(detailIntent, 12);
+                                        }
                                     }
                                 })
                         );
                     } else {
                         //No Product Placeholder
+                        adapter.setBestSellerProductsItems(gridArray);
+                        adapter.notifyDataSetChanged();
                         dealplaceholder.setVisibility(View.VISIBLE);
                         dealplaceholder.setImageResource(R.drawable.noproduct_placeholder);
                     }
@@ -329,7 +332,8 @@ public class ChildFragment extends Fragment {
                     dealplaceholder.setVisibility(View.VISIBLE);
                     dealplaceholder.setImageResource(R.drawable.noproduct_placeholder);
                 } else if (status.equals("0")) {
-                    Toast.makeText(getActivity(), message, Toast.LENGTH_SHORT).show();
+                    //Toast.makeText(getActivity(), message, Toast.LENGTH_SHORT).show();
+                    Log.d("ChildFragment :" ,message) ;
                 }
             } catch (Exception e) {
                 progressBar.setVisibility(View.INVISIBLE);

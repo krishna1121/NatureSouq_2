@@ -61,6 +61,7 @@ public class MainActivity extends Activity {
     String product_id = "", name = "";
     public static HomeDataProvider homeDataProvider;
     static ArrayList<String> fav;
+    private static final String COUNTRIES_LIST_URL = Utility.baseURL + "countrydata.php" ;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -85,7 +86,10 @@ public class MainActivity extends Activity {
             JSONObject jsonObject = new JSONObject();
             try {
                 jsonObject.put("apikey", "naturesouq#123@apikey");
-                new HomeTask(jsonObject).executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR, HOMEURL);
+                new HomeTask(jsonObject ,"").executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR, HOMEURL);
+                //Call countries list Url
+                new HomeTask(jsonObject , "countriesList").executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR, COUNTRIES_LIST_URL);
+
 
             } catch (JSONException e) {
                 e.printStackTrace();
@@ -351,9 +355,12 @@ public class MainActivity extends Activity {
 
     public class HomeTask extends AsyncTask<String, Void, String> {
         JSONObject obj;
+        String identifier ;
 
-        public HomeTask(JSONObject jobj) {
+
+        public HomeTask(JSONObject jobj , String identifier) {
             obj = jobj;
+            this.identifier = identifier ;
         }
 
         @Override
@@ -385,57 +392,80 @@ public class MainActivity extends Activity {
 
                 if (status.equals("1")) {
 
-                    JSONObject object = jsonResponse.getJSONObject("data");
-                    JSONArray jsonArray = object.getJSONArray("category");
+                    if(identifier.equals("countriesList")) {
+                        JSONArray jsonArray = jsonResponse.getJSONArray("data");
+                        ArrayList<CountriesList> countriesList = new ArrayList<>();
 
-                    expandableListTitle = new ArrayList(expandableListDetail.keySet());
-                    expandableListAdapter = new ExpandableListAdapter(MainActivity.this, expandableListTitle, expandableListDetail, navIconArray);
-                    expandableListView.setAdapter(expandableListAdapter);
-
-                    for (int navsize = 0; navsize < jsonArray.length(); navsize++) {
-
-                        childListTitle=new ArrayList<>();
-
-                        JSONObject jsonObject = jsonArray.getJSONObject(navsize);
-                        String category_id = jsonObject.getString("category_id");
-                        String parent_id = jsonObject.getString("parent_id");
-                        name = jsonObject.getString("name");
-                        String is_active = jsonObject.getString("is_active");
-                        String position = jsonObject.getString("position");
-                        String level = jsonObject.getString("level");
-
-                        expandableListTitle.add(name);
-
-                        JSONArray jsonArray1 = jsonObject.getJSONArray("children");
-                        int j = jsonArray1.length();
-
-                        for (int child = 0; child < jsonArray1.length(); child++) {
-
-                            JSONObject object1 = jsonArray1.getJSONObject(child);
-                            String category_id1 = object1.getString("category_id");
-                            String parent_id1 = object1.getString("parent_id");
-                            String name1 = object1.getString("name");
-                            String is_active1 = object1.getString("is_active");
-                            String position1 = object1.getString("position");
-                            String level1 = object1.getString("level");
-
-                            NavigationItem item =new NavigationItem(category_id1,name1);
-                            childListTitle.add(item);
+                        for(int countryCount = 0 ; countryCount < jsonArray.length() ; countryCount++){
+                            JSONObject jsonObject = jsonArray.getJSONObject(countryCount) ;
+                            String country_id = jsonObject.getString("country_id") ;
+                            String name = jsonObject.getString("name");
+                            String shipping_cost = jsonObject.getString("shipping_cost");
+                            CountriesList countriesListItem = new CountriesList(name,country_id ,shipping_cost);
+                            countriesList.add(countriesListItem) ;
                         }
-                        expandableListDetail.put(name, childListTitle);
-                        expandableListAdapter.notifyDataSetChanged();
 
+                        //Set countriesList in Application class so that other activities can access it .
+                        NatureSouqPrefrences.setCountriesList(countriesList);
+
+                    }else{
+
+                        JSONObject object = jsonResponse.getJSONObject("data");
+                        JSONArray jsonArray = object.getJSONArray("category");
+
+                        expandableListTitle = new ArrayList(expandableListDetail.keySet());
+                        expandableListAdapter = new ExpandableListAdapter(MainActivity.this, expandableListTitle, expandableListDetail, navIconArray);
+                        expandableListView.setAdapter(expandableListAdapter);
+
+                        for (int navsize = 0; navsize < jsonArray.length(); navsize++) {
+
+                            childListTitle=new ArrayList<>();
+                            JSONObject jsonObject = jsonArray.getJSONObject(navsize);
+                            String category_id = jsonObject.getString("category_id");
+
+
+                            if(!category_id.equals("482")) {
+                                String parent_id = jsonObject.getString("parent_id");
+                                name = jsonObject.getString("name");
+                                String is_active = jsonObject.getString("is_active");
+                                String position = jsonObject.getString("position");
+                                String level = jsonObject.getString("level");
+
+                                expandableListTitle.add(name);
+
+                                JSONArray jsonArray1 = jsonObject.getJSONArray("children");
+                                int j = jsonArray1.length();
+
+                                for (int child = 0; child < jsonArray1.length(); child++) {
+
+                                    JSONObject object1 = jsonArray1.getJSONObject(child);
+                                    String category_id1 = object1.getString("category_id");
+                                    String parent_id1 = object1.getString("parent_id");
+                                    String name1 = object1.getString("name");
+                                    String is_active1 = object1.getString("is_active");
+                                    String position1 = object1.getString("position");
+                                    String level1 = object1.getString("level");
+
+                                    NavigationItem item =new NavigationItem(category_id1,name1);
+                                    childListTitle.add(item);
+                                }
+
+                                expandableListDetail.put(name, childListTitle);
+
+                                expandableListAdapter.notifyDataSetChanged();
+                            }
+                        }
+
+                        //for Home data
+                        JSONArray jsonArray_home = object.getJSONArray("home");
+                        homeDataProvider=new HomeDataProvider(jsonArray_home);
+                        homeDataProvider.setHomeData(jsonArray_home);
+
+                        displayView(0, -1,"","");
+
+                        if (progressBar != null)
+                            progressBar.setVisibility(View.GONE);
                     }
-
-                    //for Home data
-                    JSONArray jsonArray_home = object.getJSONArray("home");
-                    homeDataProvider=new HomeDataProvider(jsonArray_home);
-                    homeDataProvider.setHomeData(jsonArray_home);
-
-                    displayView(0, -1,"","");
-
-                    if (progressBar != null)
-                        progressBar.setVisibility(View.GONE);
 
                 } else {
                     if (progressBar != null)

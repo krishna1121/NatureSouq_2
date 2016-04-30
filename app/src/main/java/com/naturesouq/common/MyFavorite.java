@@ -257,7 +257,6 @@ public class MyFavorite extends Activity implements MyFavoriteAdapter.ViewClickL
                                 favoriteplaceholder.setVisibility(View.INVISIBLE);
                             }
 
-
                             for (int i = 0; i < rowItems.size(); i++) {
                                 String productId = rowItems.get(i).getProduct_id();
                                 MainActivity.fav.add(productId);

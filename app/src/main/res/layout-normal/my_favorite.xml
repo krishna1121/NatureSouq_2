@@ -3,12 +3,15 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
+
     <android.support.v7.widget.RecyclerView
         android:id="@+id/my_favorite_recycler"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:dividerHeight="1dp"
-        android:scrollbars="none">
+        android:scrollbars="none"
+        android:background="@color/gray"
+        >
 
     </android.support.v7.widget.RecyclerView>
     <include layout="@layout/progressbar"

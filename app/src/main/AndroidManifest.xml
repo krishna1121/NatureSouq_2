@@ -161,7 +161,7 @@
             android:label="@string/appname"
             android:launchMode="singleTop"
             android:screenOrientation="portrait"
-            android:theme="@style/ActivityWithBackButtonNormalTheme">
+            android:theme="@style/ActivityWithBackButton">
         </activity>
 
 

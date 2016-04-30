@@ -21,7 +21,6 @@ import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import com.naturesouq.R;
 import com.naturesouq.adapter.MyHorizontalAdapter;
 import com.naturesouq.adapter.MyVerticalAdapter;
@@ -38,16 +37,15 @@ import com.naturesouq.common.VerticalSpaceItemDecoration;
 import com.naturesouq.model.HomeDataProvider;
 import com.naturesouq.model.HomeProductsItem;
 import com.squareup.picasso.Picasso;
-
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-
 import java.util.ArrayList;
 
 /**
  * Created by SI-Andriod on 15-Oct-15.
  */
+
 public class HomeFragment extends Fragment implements ViewClickListener {
 
     private static final String LOG_TAG = HomeFragment.class.getSimpleName();
@@ -69,7 +67,6 @@ public class HomeFragment extends Fragment implements ViewClickListener {
     TextView DealoftheDay;
     JSONArray homeSpecificationArray, homeSpecificationKeyArray, homeGallery;
     public static HomeDataProvider provider1, provider2, provider3;
-
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -278,6 +275,7 @@ public class HomeFragment extends Fragment implements ViewClickListener {
                         //Add ViewPager On hOme page
                         String id[] = new String[jsonArray.length()];
                         String content[] = new String[jsonArray.length()];
+
                         for (int slider = 0; slider < jsonArray.length(); slider++) {
 
                             JSONObject jsonObject = jsonArray.getJSONObject(slider);
@@ -289,7 +287,7 @@ public class HomeFragment extends Fragment implements ViewClickListener {
                                 slider1 = sliderImage;
                             } else if (slider == 1) {
                                 slider2 = sliderImage;
-                            } else {
+                            } else if(slider == 2){
                                 slider3 = sliderImage;
 
                                 //Add ViewPager On hOme page
@@ -420,29 +418,27 @@ public class HomeFragment extends Fragment implements ViewClickListener {
             imageView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    // Toast.makeText(getActivity(),""+id[position],Toast.LENGTH_LONG).show();
 
                     Intent data = new Intent(getActivity(), CategoryProducts.class);
                     data.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
                     data.putExtra("categoryId", id[position]);
                     data.putExtra("cat", contentTitle[position]);
                     startActivity(data);
+
                 }
             });
 
-            //imageView.setScaleType(ImageView.ScaleType.FIT_XY);
-
             //Load images using Picasso .
             if (!TextUtils.isEmpty(urlArray[position])) {
-                //Picasso.with(getApplicationContext()).load(R.drawable.abc).error(R.drawable.breweries_detail_image).into(imageView);
-
                 progressBar.setVisibility(View.VISIBLE);
+
+                Log.d("Position", String.valueOf(position));
+                Log.d("URL", String.valueOf(urlArray[position]) );
 
                 Picasso.with(getActivity().getApplicationContext()).load(urlArray[position]).error(R.drawable.placeholder_detail).into(imageView, new com.squareup.picasso.Callback() {
                     @Override
                     public void onSuccess() {
                         progressBar.setVisibility(View.GONE);
-                        //  imageView.setImageBitmap(bmp);
                     }
 
                     @Override
@@ -521,8 +517,6 @@ public class HomeFragment extends Fragment implements ViewClickListener {
                     Intent i = new Intent();
 
                     if (!TextUtils.isEmpty(requiredValue)) {
-                        // Toast.makeText(getActivity(),requiredValue,Toast.LENGTH_LONG).show();
-                        // countTextView.setText(Integer.parseInt(requiredValue));
                         updateHotCount(Integer.parseInt(requiredValue));
                         i.putExtra("updateCount", requiredValue);
                     }

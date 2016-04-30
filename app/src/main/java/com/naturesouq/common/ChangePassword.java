@@ -71,7 +71,7 @@ public class ChangePassword extends Activity {
                 oldPassValidationFlag = true ;
             }
         } else {
-            oldPassword.setError("Please povide old password !");
+            oldPassword.setError("Please provide old password !");
         }
 
         if (newPass.length() > 0) {
@@ -79,7 +79,7 @@ public class ChangePassword extends Activity {
                 newPassword.setError("Password length must be greater than five !");
             }
         } else {
-            newPassword.setError("Please povide new password !");
+            newPassword.setError("Please provide new password !");
         }
 
         if (confirmPass.length() > 0) {
@@ -87,11 +87,11 @@ public class ChangePassword extends Activity {
                 confirmPassword.setError("Password length must be greater than five !");
             }
         } else {
-            confirmPassword.setError("Please povide confirm password !");
+            confirmPassword.setError("Please provide confirm password !");
         }
 
         if(! ((confirmPass.length() > 0 && newPass.length() > 0) && confirmPass.equals(newPass) ) ){
-            confirmPassword.setError("New password and confirm passoword are not equal !");
+            confirmPassword.setError("New password and confirm password are not equal !");
         }else{
             confirmPassAndNewPassValidationFlag = true ;
         }

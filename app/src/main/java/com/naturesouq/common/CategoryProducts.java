@@ -246,10 +246,12 @@ public class CategoryProducts extends Activity {
     public class BestSellerTask extends AsyncTask<String, Void, String> {
         JSONObject obj;
         boolean isRunning = true;
+        String identifier ;
 
         //Show registration progress.
         public BestSellerTask(JSONObject jobj) {
             obj = jobj;
+            this.identifier = identifier ;
         }
 
         @Override
@@ -261,7 +263,6 @@ public class CategoryProducts extends Activity {
         protected void onPreExecute() {
 
             try {
-
                 progressBar.setVisibility(View.VISIBLE);
             } catch (Exception e) {
                 e.printStackTrace();

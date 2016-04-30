@@ -12,7 +12,7 @@
     <color name="setting_LineColor">#dddcdf</color>
     <color name="Message_borderLine">#cccccc</color>
     <color name="gallery">#ededed</color>
-
+    <color name="gray">#eeeeee</color>
     <color name="one">#FFFFFF</color>
     <color name="two">#E1F0F7</color>
     <color name="odd">#D2E1F8</color>
@@ -21,6 +21,7 @@
     <color name="filter_background">#ffffff</color>
     <color name="transparent">#00000000</color>
     <color name="productlistbackground">#ffffff</color>
+
 
 
 
