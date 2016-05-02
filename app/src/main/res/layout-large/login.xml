@@ -103,10 +103,8 @@
         android:textSize="16.5sp"
         android:textColor="#b2b2b2"
         android:gravity="center"
-        android:layout_marginBottom="27dp"
+        android:layout_marginBottom="3dp"
         android:layout_marginTop="30dp"/>
-
-
 
 
     <com.facebook.login.widget.LoginButton
@@ -117,7 +115,7 @@
         android:layout_marginTop="19.5dp"
         android:scaleType="fitXY"
         android:textSize="30sp"
-        android:visibility="gone"
+        android:visibility="visible"
         android:textColor="@android:color/transparent"
         android:clickable="true"/>
 

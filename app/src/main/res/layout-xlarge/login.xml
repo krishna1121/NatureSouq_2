@@ -103,8 +103,8 @@
         android:textSize="22sp"
         android:textColor="#b2b2b2"
         android:gravity="center"
-        android:visibility="gone"
-        android:layout_marginBottom="36dp"
+        android:visibility="visible"
+        android:layout_marginBottom="5dp"
         android:layout_marginTop="40dp"/>
 
 
@@ -118,7 +118,7 @@
         android:layout_marginTop="26dp"
         android:scaleType="fitXY"
         android:textSize="40sp"
-        android:visibility="gone"
+        android:visibility="visible"
         android:textColor="@android:color/transparent"
         android:clickable="true"/>
 

@@ -100,11 +100,11 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="or you can"
-        android:visibility="gone"
+        android:visibility="visible"
         android:textSize="11sp"
         android:textColor="#b2b2b2"
         android:gravity="center"
-        android:layout_marginBottom="18dp"
+        android:layout_marginBottom="3dp"
         android:layout_marginTop="20dp"/>
 
 
@@ -115,7 +115,7 @@
         android:gravity="center"
         android:layout_marginTop="13dp"
         android:textSize="20sp"
-        android:visibility="gone"
+        android:visibility="visible"
         android:textColor="@android:color/transparent"
         android:clickable="true"/>
 
