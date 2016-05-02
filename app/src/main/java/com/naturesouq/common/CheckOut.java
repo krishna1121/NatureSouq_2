@@ -154,8 +154,8 @@ public class CheckOut extends OPActivity {
 
                             //Now Order is success so Start Payment Activity .
                             OPCredentials opCredentials = new OPCredentials();
-                            opCredentials.initOPParams(Utility.TEST_PSPID, Utility.TEST_USER_ID, Utility.TEST_PASSWORD, Utility.TEST_SHAIN_PASSPHRASE);
-                            //opCredentials.initOPParams(Utility.LIVE_PSPID, Utility.LIVE_USER_NAME, Utility.LIVE_PASSWORD, Utility.LIVE_SHAIN_PASSPHRASE);
+                            //opCredentials.initOPParams(Utility.TEST_PSPID, Utility.TEST_USER_ID, Utility.TEST_PASSWORD, Utility.TEST_SHAIN_PASSPHRASE);
+                            opCredentials.initOPParams(Utility.LIVE_PSPID, Utility.LIVE_USER_ID, Utility.LIVE_PASSWORD, Utility.LIVE_SHAIN_PASSPHRASE);
                             OPPayData payData = new OPPayData();
                             payData.setPayType(OPPayType.NewPayment);
                             if (!TextUtils.isEmpty(orderId))
@@ -166,6 +166,9 @@ public class CheckOut extends OPActivity {
                                 price = (String) totalPrice.getText();
                                 int priceToPassToPayfort = Integer.parseInt(price) * 100;
                                 payData.setAmount(priceToPassToPayfort);
+                                //payData.setAmount(1 * 100);
+
+
                             }
 
                             payData.setCurrency("AED");
@@ -183,7 +186,7 @@ public class CheckOut extends OPActivity {
                             paymethods.add(OPCardListItem.createDirectdebitsDe());
                             paymethods.add(OPCardListItem.createJcb());
                             //sendNewRequest(payData, opCredentials, paymethods, Backend.PRODUCTION);
-                            sendNewRequest(payData, opCredentials, paymethods, Backend.TEST);
+                            sendNewRequest(payData, opCredentials, paymethods, Backend.PRODUCTION);
 
                         }else if(value1.equals("COD")){
                             JSONObject object = jsonResponse.getJSONObject("data");

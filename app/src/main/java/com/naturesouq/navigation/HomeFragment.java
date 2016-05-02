@@ -50,6 +50,9 @@ public class HomeFragment extends Fragment implements ViewClickListener {
 
     private static final String LOG_TAG = HomeFragment.class.getSimpleName();
     final String SLIDER_IMAGES = Utility.baseURL + "slider.php";
+    //inal String SLIDER_IMAGES = Utility.baseURL + "test.php";
+
+
     ProgressBar progressBar;
     int[] anim_circle;
     ImageView circleAnimImageView;

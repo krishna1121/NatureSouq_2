@@ -61,7 +61,6 @@ public class Search extends Activity implements SearchBaseAdapter.ViewClickListe
         getActionBar().setDisplayShowHomeEnabled(false);
         getActionBar().setHomeButtonEnabled(true);
         getActionBar().setTitle("Search");
-
         bar = (ProgressBar) findViewById(R.id.progressBar);
         placeHolder=(ImageView)findViewById(R.id.placeHolder);
         placeHolder.setVisibility(View.INVISIBLE);
@@ -78,7 +77,6 @@ public class Search extends Activity implements SearchBaseAdapter.ViewClickListe
         Typeface face2= Typeface.createFromAsset(getAssets(), "font/Lato_Black.ttf");
         //delete.setTypeface(face2);
         rowItems = new ArrayList<SearchListItem>();
-
 
         // Get the SearchView and set the searchable configuration
         SearchManager searchManager = (SearchManager) getSystemService(Context.SEARCH_SERVICE);
@@ -110,9 +108,6 @@ public class Search extends Activity implements SearchBaseAdapter.ViewClickListe
                     suggestions.saveRecentQuery(s, null);
                 }
 
-//                SearchRecentSuggestions suggestions = new SearchRecentSuggestions(Search.this,
-//                        MySuggestionProvider.AUTHORITY, MySuggestionProvider.MODE);
-//                suggestions.clearHistory();
                 return true;
             }
 
@@ -122,21 +117,6 @@ public class Search extends Activity implements SearchBaseAdapter.ViewClickListe
             }
         });
 
-
-//        searchView.setOnTouchListener(new View.OnTouchListener() {
-//            @Override
-//            public boolean onTouch(View v, MotionEvent event) {
-//                storeHistory = new String[]{query};
-//                searchHistoryListItems = new ArrayList<SearchHistoryListItem>();
-//                for (int i = 0; i < storeHistory.length; i++) {
-//                    SearchHistoryListItem feedItem = new SearchHistoryListItem(storeHistory[i]);
-//                    searchHistoryListItems.add(feedItem);
-//                }
-//                searchHistoryBaseAdapter = new SearchHistoryBaseAdapter(Search.this, searchHistoryListItems);
-//                mySearch.setAdapter(searchHistoryBaseAdapter);
-//                return false;
-//            }
-//        });
     }
 
     @Override
