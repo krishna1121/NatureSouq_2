@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#eeeeee"
+    >
+
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/my_address_recycler"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:dividerHeight="1dp"
+        android:layout_above="@+id/main"
+        android:scrollbars="none"
+        android:padding="13dp">
+
+    </android.support.v7.widget.RecyclerView>
+
+    <LinearLayout
+        android:id="@+id/main"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginTop="15dp"
+        android:padding="13dp">
+        <Button
+            android:id="@+id/addNewAddress"
+            android:layout_width="match_parent"
+            android:layout_height="38dp"
+            android:text="ADD NEW ADDRESS"
+            android:textColor="#fff"
+            android:textSize="11sp"
+            android:textStyle="bold"
+            android:clickable="true"
+            android:background="@drawable/button_effect_gray"
+            android:layout_gravity="bottom"
+            android:onClick="onAddNewAddress"/>
+    </LinearLayout>
+
+    <include
+        android:id="@+id/progressBar"
+        layout="@layout/progressbar"/>
+
+    <ImageView
+        android:id="@+id/addressplaceholder"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="145dp"
+        android:visibility="invisible"
+        android:src="@drawable/addressplaceholder"
+
+        />
+
+</RelativeLayout>

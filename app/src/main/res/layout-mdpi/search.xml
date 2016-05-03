@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#fff">
+
+    <RelativeLayout
+        android:id="@+id/search_lbl"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:layout_margin="13dp"
+        android:background="#fff">
+
+    <SearchView
+        android:id="@+id/searchView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_centerHorizontal="true"
+        android:iconifiedByDefault="false"
+        android:textSize="11sp"
+        android:queryHint="Search Products..."
+        android:background="@android:color/transparent"
+        android:queryBackground="@android:color/transparent"
+        android:inputType="text"
+        android:searchSuggestAuthority="com.naturesouq.common.MySuggestionProvider"
+        android:searchSuggestSelection=" ?"
+        android:searchMode="showSearchLabelAsBadge"
+        android:searchSettingsDescription="suggests symbols"
+        android:queryAfterZeroResults="true"
+        android:searchSuggestIntentAction="android.intent.action.VIEW">
+    </SearchView>
+
+    </RelativeLayout>
+
+    <LinearLayout
+        android:id="@+id/main"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_below="@id/search_lbl"
+        android:visibility="gone"
+        >
+        <LinearLayout
+            android:id="@+id/filter"
+            android:layout_width="match_parent"
+            android:layout_height="38dp"
+            android:orientation="horizontal"
+            android:weightSum="1"
+            android:layout_weight=".5">
+            <TextView
+                android:id="@+id/catagoryItem"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:textColor="#515252"
+                android:text="Filter"
+                android:textSize="11sp"
+                android:gravity="center"
+                android:layout_weight=".5"
+                android:clickable="true"
+                android:background="@drawable/textview_effect"/>
+        </LinearLayout>
+
+        <View
+            android:layout_width="1dp"
+            android:layout_height="match_parent"
+            android:background="#f0f0f0"/>
+
+        <LinearLayout
+            android:id="@+id/sortBy"
+            android:layout_width="match_parent"
+            android:layout_height="38dp"
+            android:orientation="horizontal"
+            android:weightSum="1"
+            android:layout_weight=".5">
+            <TextView
+                android:id="@+id/sortbyItem"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:textColor="#515252"
+                android:text="Sort by"
+                android:textSize="11sp"
+                android:gravity="center"
+                android:layout_weight=".5"
+                android:clickable="true"
+                android:background="@drawable/textview_effect"/>
+        </LinearLayout>
+    </LinearLayout>
+
+
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/history_recycler"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:dividerHeight="1dp"
+        android:layout_marginLeft="13dp"
+        android:layout_marginRight="13dp"
+        android:scrollbars="none"
+        android:layout_below="@+id/main"
+
+        >
+
+    </android.support.v7.widget.RecyclerView>
+
+    <ImageView
+        android:id="@+id/placeHolder"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:src="@drawable/no_product_placeholder"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:visibility="invisible"/>
+
+    <include layout="@layout/progressbar"/>
+</RelativeLayout>

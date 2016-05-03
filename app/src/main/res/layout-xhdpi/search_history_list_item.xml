@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:layout_centerInParent="true"
+        android:layout_alignParentLeft="true"
+        android:layout_margin="13dp">
+        <TextView
+            android:id="@+id/historyResult"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="History"
+            android:textSize="15sp"
+            android:textColor="#6d6d6d"
+            android:textStyle="bold"
+            android:layout_marginRight="5dp"
+            android:layout_alignParentLeft="true"
+            android:layout_centerInParent="true"/>
+        <RelativeLayout
+            android:id="@+id/cleare"
+            android:layout_width="50dp"
+            android:layout_height="match_parent"
+            android:layout_alignParentRight="true"
+            android:layout_centerInParent="true">
+            <ImageView
+                android:id="@+id/historyCancle"
+                android:layout_width="15dp"
+                android:layout_height="15dp"
+                android:src="@drawable/delete_button"
+                 android:layout_centerInParent="true"/>
+        </RelativeLayout>
+    </RelativeLayout>
+</LinearLayout>

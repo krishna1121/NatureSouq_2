@@ -86,6 +86,7 @@ public class CategoryProducts extends Activity {
 
 
         main.setVisibility(View.GONE);
+
         listView = (RecyclerView) findViewById(R.id.grid);
         GridLayoutManager gridLayoutManager = new GridLayoutManager(CategoryProducts.this, 2, GridLayoutManager.VERTICAL, false);
         //NpaGridLayoutManager gridLayoutManager=new NpaGridLayoutManager(CategoryProducts.this,2,GridLayoutManager.VERTICAL,false);

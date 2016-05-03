@@ -18,6 +18,7 @@ import java.util.List;
 /**
  * Created by SI_Android_Binit on 2/8/2016.
  */
+
 public class SearchBaseAdapter extends  RecyclerView.Adapter<SearchBaseAdapter.CustomViewHolder> {
 
     private List<SearchListItem> mySearchItems;
@@ -49,7 +50,7 @@ public class SearchBaseAdapter extends  RecyclerView.Adapter<SearchBaseAdapter.C
         holder.productDesc.setText(feedItem.getShortDescription());
         holder.productPrice.setText("AED " +feedItem.getPrice());
         // holder.productImage.setTag(holder);
-        holder.layout_main.setOnClickListener(new View.OnClickListener() {
+        holder.product_item.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 mViewClickListener.onItemClicked(position);
@@ -76,15 +77,15 @@ public class SearchBaseAdapter extends  RecyclerView.Adapter<SearchBaseAdapter.C
 
         protected ImageView productImage;
         protected TextView productName, productDesc, productPrice;
-        RelativeLayout layout_main;
+        RelativeLayout product_item;
 
         public CustomViewHolder(View itemView) {
             super(itemView);
-            this.productImage = (ImageView)itemView.findViewById(R.id.productImage);
-            this.productName = (TextView)itemView.findViewById(R.id.name);
-            this.productDesc = (TextView)itemView.findViewById(R.id.discription);
-            this.productPrice = (TextView)itemView.findViewById(R.id.price);
-            this.layout_main=(RelativeLayout)itemView.findViewById(R.id.layout_main);
+            this.productImage = (ImageView)itemView.findViewById(R.id.product_img);
+            this.productName = (TextView)itemView.findViewById(R.id.product_name);
+            this.productDesc = (TextView)itemView.findViewById(R.id.product_dec);
+            this.productPrice = (TextView)itemView.findViewById(R.id.product_price);
+            this.product_item=(RelativeLayout)itemView.findViewById(R.id.product_item);
         }
 
     }

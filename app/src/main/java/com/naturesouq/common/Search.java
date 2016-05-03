@@ -8,6 +8,7 @@ import android.graphics.Typeface;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.provider.SearchRecentSuggestions;
+import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.Menu;
@@ -15,6 +16,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.SearchView;
 import android.widget.Toast;
@@ -50,6 +52,7 @@ public class Search extends Activity implements SearchBaseAdapter.ViewClickListe
     String query;
     JSONArray searchSpecificationArray,searchGallery,searchSpecificationKeyArray;
     ImageView placeHolder;
+    LinearLayout main ;
 
 
     @Override
@@ -63,6 +66,8 @@ public class Search extends Activity implements SearchBaseAdapter.ViewClickListe
         getActionBar().setTitle("Search");
         bar = (ProgressBar) findViewById(R.id.progressBar);
         placeHolder=(ImageView)findViewById(R.id.placeHolder);
+        main = (LinearLayout)findViewById(R.id.main);
+
         placeHolder.setVisibility(View.INVISIBLE);
 
         Intent intent = getIntent() ;
@@ -70,8 +75,21 @@ public class Search extends Activity implements SearchBaseAdapter.ViewClickListe
 
         //delete = (Button)findViewById(R.id.addNewAddress);
         mySearch = (RecyclerView)findViewById(R.id.history_recycler);
-        layoutManager = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
-        mySearch.setLayoutManager(layoutManager);
+        GridLayoutManager gridLayoutManager = new GridLayoutManager(Search.this, 2, GridLayoutManager.VERTICAL, false);
+        mySearch.addItemDecoration(new VerticalSpaceItemDecoration(8));
+        mySearch.setLayoutManager(gridLayoutManager);
+        mySearch.setNestedScrollingEnabled(false);
+        mySearch.smoothScrollBy(0, 0);
+
+
+        /*//listView = (RecyclerView) findViewById(R.id.grid);
+        GridLayoutManager gridLayoutManager = new GridLayoutManager(CategoryProducts.this, 2, GridLayoutManager.VERTICAL, false);
+        //NpaGridLayoutManager gridLayoutManager=new NpaGridLayoutManager(CategoryProducts.this,2,GridLayoutManager.VERTICAL,false);
+        listView.addItemDecoration(new VerticalSpaceItemDecoration(8));
+        listView.setLayoutManager(gridLayoutManager);
+        listView.setNestedScrollingEnabled(false);
+        listView.smoothScrollBy(0, 0);*/
+
 
         // Typeface face1= Typeface.createFromAsset(getAssets(), "font/Lato_Regular.ttf");
         Typeface face2= Typeface.createFromAsset(getAssets(), "font/Lato_Black.ttf");
@@ -207,8 +225,10 @@ public class Search extends Activity implements SearchBaseAdapter.ViewClickListe
                             //set PalceHolder Image
                             placeHolder.setVisibility(View.VISIBLE);
                             mySearch.setAdapter(null);
+                            //main.setVisibility(View.GONE);
 
                         }else {
+                            //main.setVisibility(View.VISIBLE);
                             placeHolder.setVisibility(View.INVISIBLE);
                             searchAdapter = new SearchBaseAdapter(Search.this.getApplicationContext(), rowItems);
                             searchAdapter.setViewClickListener(Search.this);

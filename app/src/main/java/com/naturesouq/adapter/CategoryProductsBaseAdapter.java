@@ -17,6 +17,7 @@ import java.util.List;
 /**
  * Created by SI_Android_Binit on 10/21/2015.
  */
+
 public class CategoryProductsBaseAdapter extends  RecyclerView.Adapter<CategoryProductsBaseAdapter.CustomViewHolder> {
 
 
@@ -73,7 +74,6 @@ public class CategoryProductsBaseAdapter extends  RecyclerView.Adapter<CategoryP
             this.productPrice = (TextView)itemView.findViewById(R.id.product_price);
         }
     }
-
 
     public interface ViewClickListener {
         void onImageClicked(int position);

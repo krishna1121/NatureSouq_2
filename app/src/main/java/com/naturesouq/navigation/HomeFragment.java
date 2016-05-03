@@ -52,7 +52,6 @@ public class HomeFragment extends Fragment implements ViewClickListener {
     final String SLIDER_IMAGES = Utility.baseURL + "slider.php";
     //inal String SLIDER_IMAGES = Utility.baseURL + "test.php";
 
-
     ProgressBar progressBar;
     int[] anim_circle;
     ImageView circleAnimImageView;
