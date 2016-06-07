@@ -57,10 +57,8 @@ public class CheckOut extends OPActivity {
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.check_out);
-
         activity = this;
         progressBar = (ProgressBar) findViewById(R.id.progressBar);
-
         getActionBar().setDisplayHomeAsUpEnabled(true);
         getActionBar().setDisplayShowHomeEnabled(false);
         getActionBar().setHomeButtonEnabled(true);
@@ -154,8 +152,8 @@ public class CheckOut extends OPActivity {
 
                             //Now Order is success so Start Payment Activity .
                             OPCredentials opCredentials = new OPCredentials();
-                            opCredentials.initOPParams(Utility.TEST_PSPID, Utility.TEST_USER_ID, Utility.TEST_PASSWORD, Utility.TEST_SHAIN_PASSPHRASE);
-                            //opCredentials.initOPParams(Utility.LIVE_PSPID, Utility.LIVE_USER_ID, Utility.LIVE_PASSWORD, Utility.LIVE_SHAIN_PASSPHRASE);
+                            //opCredentials.initOPParams(Utility.TEST_PSPID, Utility.TEST_USER_ID, Utility.TEST_PASSWORD, Utility.TEST_SHAIN_PASSPHRASE);
+                            opCredentials.initOPParams(Utility.LIVE_PSPID, Utility.LIVE_USER_ID, Utility.LIVE_PASSWORD, Utility.LIVE_SHAIN_PASSPHRASE);
                             OPPayData payData = new OPPayData();
                             payData.setPayType(OPPayType.NewPayment);
                             if (!TextUtils.isEmpty(orderId))
